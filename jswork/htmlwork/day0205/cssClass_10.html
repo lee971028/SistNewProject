@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .happy{/*전체 태그에 적용*/
+            color: #ffccff;
+            font-size: 30px;
+            font-family: 'Comic Sans MS';
+        }
+
+        b.nice{  /*b태그에서만 적용되는 클래스*/
+            color: black;
+            text-decoration: underline;
+        }
+        img.imga{
+            width: 150px;
+            height: 150px;
+            border: 10px groove gray;
+            margin-left: 200px; /*태그밖 왼쪽여백*/
+            border-radius: 100px;
+            
+        }
+
+        .imgb{
+            width: 200px;
+            height: 200px;
+            box-shadow: 5px 5px 5px gray;
+            border-radius: 30px 50px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+    <font size="5" color="red">Font Tag!!!</font><br>
+    <span style="color: magenta; font-size: 2em;">SpanTag!!!</span><br>
+    <span style="border: 3px solid green;">안녕하세요</span>
+    <div class="happy nice">
+        Div Tag!!!
+    </div>
+    <div class="happy">Div Tag#2!!!</div>
+    <b class="happy nice">B Tag!!!굵게 속성이 포함된태그</b>
+    <br>
+    <img src="../image/연예인사진/14.jpg" alt="승호없음" title="나는 유승호입니다" class="imga">
+    <br>
+    <img src="../image/쇼핑몰사진/12.jpg" title="플랫슈즈" class="imgb">
+</body>
+</html>
