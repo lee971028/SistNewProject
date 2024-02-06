@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myimg1{
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            border: 3px solid orange;
+        }
+
+        #myimg2{
+            position: relative;
+            left: 200px;
+            top: 200px;
+            width: 200px;
+        }
+
+        #myimg3{
+            position: absolute;
+            left: 800px;
+            top: 150px;
+            width: 200px;
+        }
+
+        #myimg4{
+            width: 300px;
+            height: 300px;
+            background-image: url(../image/logoImg/toy06.png);
+            background-repeat: no-repeat;
+        }
+
+        /* 마우스 클릭시 이미지 변경 */
+        #myimg4:active{
+            background-image: url(../image/logoImg/toy02.png);
+        }
+
+        /* 마우스 오버시 이미지 변경 */
+        #myimg4:hover{
+            background-image: url(../image/logoImg/toy03.png);
+            background-size: 150px 150px;
+        }
+    </style>
+</head>
+<body>
+    <img alt="이미지없음1" src="../image/쇼핑몰사진/14.jpg" title="단화들" id="myimg1">
+    <img alt="이미지없음1" src="../image/연예인사진/9.jpg" title="강동원" id="myimg2">
+    <img alt="이미지없음1" src="../image/logoImg/toy03.png" title="토이스토리" id="myimg3">
+    <div id="myimg4"></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* class는 동시에 여러군데 사용(. 으로 만듬)
+        id는 딱한군데 사용할때 (# 으로 만듬) */
+
+        .aaa{  /*모든태그에서 사용가능한 클래스*/
+            color: magenta;
+        }
+
+        div.bbb{  /*클래스가 bbb인 div에서만 사용가능*/
+
+            color: green;
+            font-size: 20pt;
+            width: 200px;
+            height: 50px;
+            border: 1px solid gray;
+        }
+
+        #sist{
+            position: absolute;
+            top: 400px;
+            left: 200px;
+            width: 200px;
+            height: 100px;
+            font-size: 20px;
+            border: 2px dotted green;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="color: red; font-size: 15pt; background: yellow;
+    width: 200px; height: 150px;">
+        안녕하세요
+    </div>
+    <div style="position: absolute; top: 200px; left: 300px;
+    width: 200px; height: 150px; border: 3px dotted green;">
+        오늘은 즐거운 화요일
+    </div>
+
+    <div class="aaa">Hello</div>
+    <div class="bbb">HappyDay</div>
+    <div class="bbb">오늘점심</div>
+
+    <b class="aaa">Bold Test</b>
+    <b class="bbb">Bold Test_2</b>
+    <div id="sist">쌍용교육4강의장</div>
+</body>
+</html>

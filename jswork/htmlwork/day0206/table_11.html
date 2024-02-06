@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 2px solid gray;
+            border-collapse: collapse; /*칸과 칸 사이 여백 없어짐*/
+        }
+
+        tr,th,td{
+            border: 1px dotted green;
+            
+        }
+    </style>
+</head>
+<body>
+    <table >
+        <thead>
+            <!-- tr은 하나의 행 -->
+            <tr>
+                <th>이름</th>  <!--th은 제목-->
+                <th>학과</th> 
+                <th>학년</th> 
+                <th>주소</th> 
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+               <td>강동원</td> 
+               <td>컴공과</td>
+               <td>2</td>
+               <td>서울시 서초구</td>
+            </tr>
+            <tr>
+                <td>이승기</td> 
+                <td>영어영문과</td>
+                <td>3</td>
+                <td>서울시 강동구 길동</td>
+             </tr>
+             <tr>
+                <td>윤미래</td> 
+                <td>유아교육</td>
+                <td>4</td>
+                <td>인천시 서구</td>
+             </tr>
+        </tbody>
+    </table>
+</body>
+</html>
