@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tb1{
+            width: 500px;
+            border: 3px solid gray;
+            border-collapse: collapse;
+        }
+
+        /* >:바로아래태그 의미,한칸떼는건 하위 */
+        .tb1>thead>tr>th{
+            border: 1px solid gray;
+            background-color: bisque;
+            color: brown;
+        }
+
+        .tb1>thead>tr{
+            height: 50px;
+            font-size: 1.2em;
+        }
+
+        .tb1>tbody>tr>td{
+            background-color: azure;
+            border: 1px solid blue;
+        }
+
+        /* table2 */
+        .tb2{
+            width: 400px;
+            border: 5px inset green;
+            border-collapse: collapse;
+        }
+        .tb2 th,.tb2 td{
+
+            border: 1px solid orange;
+        }
+
+        .tb2 thead tr{height: 50px; color: red;}
+
+        .tb2 img{width: 100px;}
+
+        /* td태그의 3번열의 너비를 100px,글자색 blue,우측정렬 */
+        .tb2 td:nth-child(3){
+            width: 100px;
+            color: blue;
+            text-align: right;
+        }
+
+        /* 테이블이벤트를 css에서도 줄수있다 */
+        .tb1 tbody td:hover{
+            background-color: green;
+            color: white;
+
+        }
+
+        .tb2 tbody tr:hover{
+            background-color: aquamarine;
+        }
+
+        .tb3{
+            width: 400px;
+            border: 5px inset gray;
+            border-collapse: collapse;
+        }
+
+        .tb3 td{
+            border: 1px solid gray;
+            font-size: 15px;
+        }
+
+        .tb3 .line{
+            border-bottom: 5px double red;
+        }
+    </style>
+</head>
+<body>
+    <table class="tb1">
+        <caption><b>[표연습_1]</b></caption>
+        <thead>
+            <tr>
+                <th>이름</th> <th>나이</th> <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>김민규</td><td>28세</td><td>강남구 역삼동</td>
+            </tr>
+            <tr>
+                <td>홍민규</td><td>26세</td><td>강남구 서초동</td>
+            </tr>
+            <tr>
+                <td>윤민규</td><td>26세</td><td>강서구 명일동</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <table class="tb2">
+        <caption><b>[표연습_2]</b></caption>
+        <thead>
+            <tr>
+                <th>상품명</th><th>이미지</th><th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>패딩가디건</td>
+                <td><img src="../image/쇼핑몰사진/9.jpg"></td>
+                <td>55000원</td>
+            </tr>
+            <tr>
+                <td>진주팔찌</td>
+                <td><img src="../image/쇼핑몰사진/20.jpg"></td>
+                <td>165000원</td>
+            </tr>
+            <tr>
+                <td>스웨이드단화</td>
+                <td><img src="../image/쇼핑몰사진/11.jpg"></td>
+                <td>78000원</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <table class="tb3">
+        <caption><b>[표연습_3]</b></caption>
+        <tr>
+            <td width="150" rowspan="3" align="center">
+               <img src="../image/연예인사진/13.jpg" width="130" border="1">
+            </td>
+            <td>
+                이름:박신혜
+            </td>
+        </tr>
+        <tr>
+            <td>핸드폰: 010-111-4444</td>
+        </tr>
+        <tr class="line">
+            <td>소속사 :JYP</td>
+        </tr>
+        <tr>
+            <td width="150" rowspan="3" align="center">
+               <img src="../image/연예인사진/14.jpg" width="130" border="1">
+            </td>
+            <td>
+                이름:유승호
+            </td>
+        </tr>
+        <tr>
+            <td>핸드폰: 010-222-4444</td>
+        </tr>
+        <tr class="line">
+            <td>소속사 :하이브</td>
+        </tr>
+        <tr>
+            <td width="150" rowspan="3" align="center">
+               <img src="../image/연예인사진/17.jpg" width="130" border="1">
+            </td>
+            <td>
+                이름:신민아
+            </td>
+        </tr>
+        <tr>
+            <td>핸드폰: 010-111-5555</td>
+        </tr>
+        <tr>
+            <td>소속사 :에스엠</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: #222;
+    height: 100%;
+    margin: 0;
+}
+
+#container{
+    position: absolute;
+    left: 50%;
+    margin-left: -450px;
+    width: 900px;
+    height: 100%;
+    background: #fff;
+}
+
+aside{
+    float: left;
+    width: 300px;
+    padding: 100px 50px;
+    height: 100%;
+    background: rgb(215, 215, 215);
+}
+
+aside img{
+    width: 100px;
+    border-radius: 100px;
+}
+
+#detail{
+
+    position: relative;
+    top: 200px;
+}
+
+#main{
+    float: right;
+    width: 600px;
+    height: 100%;
+    padding: 50px;
+}
+
+
