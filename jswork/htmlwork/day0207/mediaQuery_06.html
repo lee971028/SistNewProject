@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미디어쿼리구문 사용하기</title>
+    <style>
+        body{
+            background: url(../image/jquery_img/cover.png) no-repeat fixed;
+            background-size: cover;
+        }
+
+            @media screen and (max-width:1024px){
+                body{
+                background: url(../image/div_img/beauty3.jpg) no-repeat fixed;
+                background-size: cover;
+            }
+
+            @media screen and (max-width:768px){
+                body{
+                background: url(../image/div_img/beauty4.jpg) no-repeat fixed;
+                background-size: cover;
+            }
+
+            @media screen and (max-width:320px){
+                body{
+                background: url(../image/div_img/oneday02.jpg) no-repeat fixed;
+                background-size: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 미디어쿼리구문 : 특정미디어에서 어떤 css를 쓸지-->
+   <!--[only | not] @media 미디어유형 [and조건] *[and조건]
+       @media screen and (min-width:200px) and (max-width:450px)--> 
+</body>
+</html>
