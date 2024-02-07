@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>상품 주문서</h1>
+        <form>
+            <fieldset>
+                <legend>개인정보</legend>
+                  <ul>
+                    <li>
+                        <label>이름</label>
+                        <input type="text" placeholder="여백없이 이름입력" required>
+                    </li>
+                    <li>
+                        <label>연락처</label>
+                        <input type="tel" placeholder="연락가능한 전화번호">
+                    </li>
+                  </ul>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>배송지 정보</legend>
+                <ul>
+                    <li>
+                        <label>주소</label>
+                        <input type="text" size="40" required>
+                    </li>
+                    <li>
+                        <label>핸드폰</label>
+                        <input type="tel" >
+                    </li>
+                    <li>
+                        <label>배송시 남길메모</label>
+                        <textarea cols="40" rows="5"></textarea>
+                    </li>
+                </ul>
+            </fieldset>
+
+            <div style="text-align: center;">
+                <input type="submit" value="주문하기">
+                <button type="reset">다시작성</button>
+            </div><br><br><br>
+
+            <div>
+                <ul>
+                    <li>
+                        <label>점유율</label>
+                        <meter value="0.8"></meter>
+                    </li>
+                    <li>
+                        <label>사용량 65%</label>
+                        <meter min="0" max="100" value="65"></meter>
+                    </li>
+                    <li>
+                        <label>트래픽초과</label>
+                        <meter min="1020" max="10350" low="2055" high="8990"
+                        value="9280"></meter>
+                    </li>
+                    <li>
+                        <label>적절트래픽</label>
+                        <meter value="0.5" optimum="0.8"></meter>
+                    </li>
+                </ul>
+                
+            </div>
+
+
+
+        </form>
+    </div>
+</body>
+</html>
