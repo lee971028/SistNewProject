@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 출력</title>
+</head>
+<body>
+    <!-- 자바스크립트는 다양한 방식으로 데이타 출력
+       1. innerHTML  : html요소안에 출력
+       2. document.write()  : html요소없이 출력  ()안의것을 화면에 출력하라~ 
+       3. alert() :경고창을 띠우면서 출력
+       4. console.log() : 브라우져의 콘솔탭에 출력-->
+
+       <script>
+        document.write("자바스크립트는 처음이죠?<br>")
+        console.log("안녕하세요");
+       </script>
+
+       <script>
+
+            var name1="이";
+            var name2="수";
+            var name3="연";
+
+            var name=name1+name2+name3;
+
+            document.write("안녕하세요<br>"+name+"입니다<br>");
+            // 출력시 '' "" 모두 가능하다
+            document.write("자바스크립트 시작<br> '자바스크립트 1일차'<br>");
+            document.write('자바스크립트 시작<br> "자바스크립트 1일차"<br>');
+
+       </script>
+
+       <script>
+         var a;
+         a="변수 재사용 가능?";
+         a="100";//""안에는 숫자를 넣어도 문자임
+
+         document.write(a+1);
+       </script>
+</body>
+</html>

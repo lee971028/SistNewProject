@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function hello(){
+            alert("2번째 버튼을 클릭합니다");
+        }
+
+        window.onload=function(){
+            //btn3에 클릭이벤트 주기
+        // document.getElementById("btn3").onclick
+            var b=document.getElementById("btn3");
+            b.onclick=function(){
+            alert("세번째 버튼 클릭");
+       }
+    }
+        
+
+    function ok(){
+        alert("예");
+    }
+    function no(){
+        alert("아니요");
+    }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="alert('안녕하세요')">함수호출_직접이벤트 호출</button><br>
+    <button type="button" onclick="hello()">자바스크립트 사용자 함수호출</button><br>
+    <button type="button" id="btn3">이벤트를 자바스크립트로</button>
+
+
+     <form>
+        <fieldset>
+           <legend>설문조사 하셨나요?</legend>
+             <input type="button" value="예" onclick="ok()">
+             <button type="button" onclick="no()">아니오</button>
+        </fieldset>
+     </form>
+
+</body>
+</html>

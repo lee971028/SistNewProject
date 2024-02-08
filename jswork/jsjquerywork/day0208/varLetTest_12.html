@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        var :함수형 변수 : 재선언되고 업데이트도 가능
+        let: 영역별 변수(영역별로 다른메모리) : 업데이트는 되지만 재선언은 불가능
+        (let변수는 해당 블록{}내애서만 가능)
+        const: 재선언 업데이트 불가능
+        */
+       var hello="안녕 얘들아~~";
+       var hello="나다 쌤~~"; //재선언 가능
+
+       var cnt=5;
+       if(cnt<6){
+         
+         var hello1="say Hello";
+         console.log(hello1);
+       }
+
+       console.log(hello1);
+       console.log(hello);
+
+       
+       //let
+       let hi="hi라고 인사함";
+       hi="업데이트 될까?";
+      // let hi="재선언가능?"; 재션언불가능
+       let times=4;
+
+       if(times>3){
+        let hi1="say hi~~";
+        console.log(hi1);
+       }
+
+       console.log(hi);
+       //console.log(hi1); //hi1 is not defined
+    </script>
+</body>
+</html>

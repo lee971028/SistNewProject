@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //암시적형변환: 자바스크립트 컴파일러에 의해 자동으로 형변환이 일어남
+         //String() 이용해서 숫자를 문자로
+        let result=1+"2";
+        document.write("result="+result+"<br>"); //12
+
+        var result2="2"+true;
+        document.write("result2="+result2+"<br>");  //2true
+
+        //명시적 형변환: 메소드 이용해서 문자를 숫자로
+        let test1="300";
+        document.write(test1+10+"<br>"); //30010
+        document.write(parseInt(test1)+20+"<br>"); //320
+
+        var test2="300.1";
+        document.write(parseInt(test2)+10+"<br>"); //310
+        
+        document.write(Number(test2)+10+"<br>");  //정수,실수 모두 가능
+
+        //실수로 형변환
+        document.write(parseFloat(test2)+10+"<br>"); //310.1
+    </script>
+</body>
+</html>

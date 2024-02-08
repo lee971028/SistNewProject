@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a="hello";
+        var b=100;
+        var c=10.5;
+        var d="90";
+
+        //typeOf
+        document.write(typeof(a)+"<br>");
+        document.write(typeof(b)+"<br>");
+        document.write(typeof(c)+"<br>");
+        document.write(typeof(d)+"<br>");
+
+        document.write((b+100)+"<br>");
+        document.write((d+100)+"<br>");
+
+        //isNaN(Not a Number) :문자일경우는 true,숫자일경우 false
+        document.write(isNaN(100)+"<br>"); //false
+        document.write(isNaN("hello")+"<br>"); //true
+        document.write(isNaN("a100")+"<br>");
+        document.write(isNaN("50")+"<br>"); //isNaN("33")과 같은 숫자형문자도 숫자인식되어 false를 반환
+
+        //현재날짜 출력
+        var date=new Date();
+        document.write(date.getFullYear()+"<br>"); //2024
+        document.write((date.getMonth()+1)+"<br>");  //+1을 해야 현재월
+        document.write(date.getDate()+"<br>"); //현재일
+        document.write(date.getDay()+"<br>"); //4 목   2화  1월
+    
+        //오늘은 2024년 2월8일 입니다
+        document.write("오늘은 "+date.getFullYear()+"년 "+(date.getMonth())+1+"월 "+date.getDate()+"일 입니다<br>");
+    
+    </script>
+
+    <script>
+        var input=prompt("숫자를 입력해 주세요");
+
+        function checkIsNaN(input){
+
+            result=Number(input);
+
+            if(isNaN(result)==true)
+            {
+                document.write("숫자가 아닙니다");
+            }else{
+                document.write("숫자입니다");
+            }
+        }
+
+        checkIsNaN(input);
+    </script>
+</body>
+</html>

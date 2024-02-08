@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       var ans =confirm("정말 삭제할까요?");
+
+       if(ans)
+        document.write("삭제합니다<br>");
+       else
+        document.write("삭제하지 않습니다<br>");
+    </script>
+    <script>
+        //문자열내에서 연산이 가능한 함수:eval
+        var a=eval("15+10.5");
+        document.write(a+"<br>");
+        document.write(parseFloat(a)+parseInt(a)+"<br>"); //50.5
+    </script>
+    <script>
+        //prompt창에 단을 입력해서 그 해당단 출력하기
+      var dan = Number(prompt("단을 입력하세요"));
+
+      for(var i=1;i<=9;i++)
+      {
+        document.write(dan+"X"+i+"="+(dan*i)+"<br>");
+      }
+    </script>
+</body>
+</html>
