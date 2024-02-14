@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .small{
+            width: 100px;
+        }
+
+        .result{
+            width: 300px;
+            height: 270px;
+        }
+
+        div#img-gallery{
+
+            position: absolute;
+            left: 800px;
+            top: 100px;
+            cursor: pointer;
+        }
+        #img-result>img{
+            position: absolute;
+            left: 600px;
+            top: 300px;
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+
+    <script>
+        window.onload=function(){
+
+            //id로 객체 읽어오기
+           /* img1=document.getElementById("img1");
+
+           img_result =document.getElementById("img_result");
+
+
+            //각개체마다 온클릭 기능
+            img1.onclick=function(){
+
+                //작은객체의 src속성값을 각각 읽어와서 큰객체의 src속성을 변경해주기
+                //setAttribute("바꿀속성",결과가져올속성);
+                img_result.setAttribute("src",img1.getAttribute("src"));
+            }
+
+            document.getElementById("img2").onclick=function(){
+                document.getElementById("img_result").setAttribute("src",img2.getAttribute("src"));
+            }
+            document.getElementById("img3").onclick=function(){
+                document.getElementById("img_result").setAttribute("src",img3.getAttribute("src"));
+            }
+            document.getElementById("img4").onclick=function(){
+                document.getElementById("img_result").setAttribute("src",img4.getAttribute("src"));
+            }
+            document.getElementById("img5").onclick=function(){
+                document.getElementById("img_result").setAttribute("src",img5.getAttribute("src"));
+            }
+            document.getElementById("img6").onclick=function(){
+                document.getElementById("img_result").setAttribute("src",img6.getAttribute("src"));
+            }
+            document.getElementById("img7").onclick=function(){
+                document.getElementById("img_result").setAttribute("src",img7.getAttribute("src"));
+            }*/
+
+
+            //배열로 해보기
+            var simg=[
+                document.getElementById("img1"),
+                document.getElementById("img2"),
+                document.getElementById("img3"),
+                document.getElementById("img4"),
+                document.getElementById("img5"),
+                document.getElementById("img6"),
+                document.getElementById("img7")
+            ];
+            
+
+            for(var i=0;i<simg.length;i++)
+            {
+                console.log(simg[i]);
+                console.log(simg[i].getAttribute("src"));
+
+                simg[i].onclick=function(){
+                    img_result.setAttribute("src",this.getAttribute("src"));
+                }
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="img-gallery">
+        <img src="../image/logoImg/acc01.png" class="small" id="img1">
+        <img src="../image/logoImg/acc02.png" class="small" id="img2">
+        <img src="../image/logoImg/acc03.png" class="small" id="img3">
+        <img src="../image/logoImg/bag01.png" class="small" id="img4">
+        <img src="../image/logoImg/bag02.png" class="small" id="img5">
+        <img src="../image/logoImg/bag03.png" class="small" id="img6">
+        <img src="../image/logoImg/bag04.png" class="small" id="img7">
+    </div>
+
+    <div id="img-result">
+        <img src="../image/logoImg/acc02.png" class="result" id="img_result">
+    </div>
+</body>
+</html>

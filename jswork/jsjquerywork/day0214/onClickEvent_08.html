@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/buttonStyle.css">
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+            border: 10px inset pink;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+
+            //객체 읽어서 이벤트 부여
+            document.getElementById("btn1").onclick=function(){
+
+                console.log("버튼1클릭");
+                //속성값 읽어오기
+                //myimg1.getAttribute("src");
+                //myimg2.getAttribute("src");
+
+                //속성값 변경
+                myimg1.setAttribute("src","../image/만화이미지/01.png");
+                myimg2.setAttribute("src","../image/만화이미지/02.png");
+            }
+
+            document.getElementById("btn2").onclick=function(){
+
+            console.log("버튼2클릭");
+            
+            //속성값 변경
+            myimg1.setAttribute("src","../image/연예인사진/5.jpg");
+            myimg2.setAttribute("src","../image/연예인사진/15.jpg");
+            }
+
+            document.getElementById("btn3").onclick=function(){
+
+            console.log("버튼2클릭");
+
+            //속성값 변경
+            myimg1.setAttribute("src","../image/logoImg/toy01.png");
+            myimg2.setAttribute("src","../image/logoImg/toy02.png");
+            }
+        }
+    </script>
+</head>
+<body>
+    <img src="../image/logoImg/toy01.png" id="myimg1">
+    <hr>
+    <img src="../image/logoImg/toy02.png" id="myimg2">
+    <hr>
+    <input type="button" value="변경1" id="btn1" class="btn btn-pink">
+    <input type="button" value="변경2" id="btn2" class="btn btn-green">
+    <input type="button" value="원래대로" id="btn3" class="btn btn-black">
+</body>
+</html>

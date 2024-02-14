@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #out{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            border: 2px solid gray;
+            width: 300px;
+            height: 200px;
+            padding: 10px 10px;
+            font-size: 11pt;
+            background-color: aquamarine;
+        }
+    </style>
+    <script>
+        var rnd;
+        var cnt=0;
+
+        window.onload=function(){
+            //1~100까지의 랜덤수
+            rnd=parseInt(Math.random()*100)+1;
+        }
+
+        function check(su)
+        {
+            if(su<=0||su>100)
+            {
+                alert("잘못입력했어요");
+                frm.num.value=''; //초기화
+                return false; //함수종료
+            }
+
+            //난수와 숫자를 비교해서 결과출력
+            cnt++;
+            if(su>rnd)
+                out.innerHTML+=cnt+":"+su+"보다 작습니다<br>";
+            else if(su<rnd)
+                out.innerHTML+=cnt+":"+su+"보다 큽니다<br>";
+            else
+            {
+                out.innerHTML+="<h4>축하합니다 정답은 "+rnd+"입니다</h4>";
+                imge.src="../image/jquery_img/03.png";
+                return false;
+            }
+
+            if(cnt>=10){
+                out.innerHTML+="<h4>꽝!!!다음기회에...</h4>";
+                imge.src="../image/jquery_img/c7.png";
+                return false;
+            }
+
+            frm.num.value='';
+               
+
+        }
+
+    </script>
+</head>
+<body>
+    <form action="#" name="frm" onsubmit="return false">
+        <b>숫자입력: </b>
+        <input type="text" name="num" size="5" onkeydown="if(event.keyCode==13)  check(value)">
+        
+    </form>
+
+    <div id="out"></div>
+    <div style="position: absolute; top: 80px; left: 350px;">
+        <img src="" name="imge">
+    </div>
+</body>
+</html>

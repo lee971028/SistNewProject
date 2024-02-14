@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function moveUrl(url)
+        {
+            document.location.href=url;
+            
+        }
+    </script>
+</head>
+<body>
+    <form action="#" name="frm" method="post">
+        <select name="list" onchange="location=document.frm.list.value">
+            <option value="select1.html">이동1</option>
+            <option value="select2.html">이동2</option>
+            <option value="">이동3</option>
+        </select>
+    </form>
+
+    <form name="myfrm">
+        <select name="list2" onchange="moveUrl(this.value)">
+            <option value="http://www.naver.com">네이버</option>
+            <option value="http://www.google.com">구글</option>
+        </select>
+    </form>
+</body>
+</html>

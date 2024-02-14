@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 60px;
+            height: 70px;
+            border: 2px solid gray;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>배열변수에 색상5개 저장후 배열값을 해당색상으로 출력</h3>
+    <script>
+        var arr1=['green','blue','gray','pink','orange'];
+
+        for(var i=0;i<arr1.length;i++)
+        {
+            document.write("<b style='color:"+arr1[i]+"'>"+arr1[i]+"</b>&nbsp;&nbsp;");
+        }
+
+        document.write("<hr>");
+
+        //of: arr1의 배열값이 차례대로 반복해서 꺼내진다(자바의 확장for문과 비슷)
+        for(var n of arr1)
+        document.write("<b style='color:"+n+"'>"+n+"</b>&nbsp;&nbsp;");
+        document.write("<hr>");
+
+        //in :배열의 인덱스를 얻고자 할경우
+
+        for(var idx in arr1)
+        {
+            document.write("<b>"+idx+":"+arr1[idx]+"</b>&nbsp;&nbsp;");
+        }
+
+
+    </script>
+
+    <h3>이미지을 배열초기값으로 지정후 출력</h3>
+    <script>
+        var imgArr1=['../image/만화이미지/02.png',
+            '../image/연예인사진/5.jpg',
+            '../image/쇼핑몰사진/2.jpg',
+            '../image/logoImg/a01.png'];
+
+        var s="배열개수: "+imgArr1.length+"<br>";
+        for(var i=0;i<imgArr1.length;i++)
+        {
+            s+="<img src='"+imgArr1[i]+"'>";
+        }
+        document.write(s);
+    </script>
+
+    <h3>배열_new Array()로 지정후 출력</h3>
+    <script>
+        var imgArr2=new Array(4);
+
+        imgArr2[0]='../image/만화이미지/02.png';
+        imgArr2[1]='../image/연예인사진/5.jpg';
+        imgArr2[2]='../image/쇼핑몰사진/2.jpg';
+        imgArr2[3]='../image/logoImg/a01.png';
+
+        var s="배열개수: "+imgArr2.length+"<br>";
+        for(var i=0;i<imgArr2.length;i++)
+        {
+            s+="<img src='"+imgArr2[i]+"'>";
+        }
+        document.write(s);
+    </script>
+
+    <h3>배열_new Array()로 지정후 출력_push로 5개 삽입후 출력</h3>
+    <script>
+        var imgArr3=new Array();
+
+        imgArr3.push("../image/만화이미지/02.png");
+        imgArr3.push("../image/logoImg/a01.png");
+        imgArr3.push("../image/쇼핑몰사진/2.jpg");
+        imgArr3.push("../image/연예인사진/5.jpg");
+        imgArr3.push("../image/연예인사진/17.jpg");
+
+        var s="배열갯수: "+imgArr3.length+"<br>";
+        for(var i=0;i<imgArr3.length;i++)
+        {
+            s+="<img src='"+imgArr3[i]+"'>";
+        }
+
+        document.write(s);
+    </script>
+
+    <h3>위의 예제에서 마지막 이미지 2개 지우시고 다시 출력</h3>
+    <script>
+        imgArr3.pop(); //마지막 사진 꺼내서 없앰
+        imgArr3.pop();
+
+        var s="배열갯수: "+imgArr3.length+"<br>";
+        for(var i=0;i<imgArr3.length;i++)
+        {
+            s+="<img src='"+imgArr3[i]+"'>";
+        }
+
+        document.write(s);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .small{
+            width: 100px;
+        }
+
+        .result{
+            width: 300px;
+            height: 270px;
+        }
+
+        div#img-gallery{
+
+            position: absolute;
+            left: 800px;
+            top: 100px;
+            cursor: pointer;
+        }
+        #img-result>img{
+            position: absolute;
+            left: 600px;
+            top: 300px;
+            width: 500px;
+            height: 600px;
+        }
+    </style>
+    <script>
+
+        window.onload=function(){
+            var simg=[
+                document.getElementById("img1"),
+                document.getElementById("img2"),
+                document.getElementById("img3"),
+                document.getElementById("img4"),
+                document.getElementById("img5"),
+                document.getElementById("img6"),
+                document.getElementById("img7")
+            ];
+
+            for(var i=0;i<simg.length;i++)
+            {
+                simg[i].setAttribute("src","../image/쇼핑몰사진/"+(i+1)+".jpg");
+                simg[i].onclick=function(){
+                    img_result.setAttribute("src",this.getAttribute("src")); 
+                }
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="img-gallery">
+        <img src="" class="small" id="img1">
+        <img src="" class="small" id="img2">
+        <img src="" class="small" id="img3">
+        <img src="" class="small" id="img4">
+        <img src="" class="small" id="img5">
+        <img src="" class="small" id="img6">
+        <img src="" class="small" id="img7">
+    </div>
+
+    <div id="img-result">
+        <img src="" class="result" id="img_result">
+    </div>
+</body>
+</html>

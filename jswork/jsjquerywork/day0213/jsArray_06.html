@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var fruit=['딸기','사과','바나나','오렌지','황금향'];
+
+        document.write("fruit[0]="+fruit[0],"<br>");
+        document.write("fruit[1]="+fruit[1],"<br>");
+        document.write("fruit[2]="+fruit[2],"<br>");
+        document.write("fruit[3]="+fruit[3],"<br>");
+        document.write("fruit[4]="+fruit[4],"<br>");
+        document.write("=========================<br>");
+
+        for(var i=0;i<fruit.length;i++)
+        {
+            document.write("fruit["+i+"]="+fruit[i]+"<br>");
+        }
+    </script>
+
+    <h3>10개의 난수 출력하기</h3>
+    <script>
+        var rnd;
+        for(var i=1;i<=10;i++)
+        {
+            rnd=parseInt(Math.random()*10)+1;
+           // document.write('<h2>'+rnd+'</h2>');
+           document.write('<b>'+rnd+'</b>&nbsp;&nbsp;');
+        }
+    </script>
+
+    <h3>자바스크립트에서 배열선언하는 방법_선언후 초기값지정</h3>
+    <script>
+        var arr=new Array();
+        arr[0]='피자';
+        arr[1]='햄버거';
+        arr[2]='샌드위치';
+        arr[3]='스테이크';
+
+        for(var i=0;i<arr.length;i++)
+        {
+            document.write(arr[i]+'&nbsp;');
+        }
+    </script>
+
+    <h3>자바스크립트에서 배열선언하는 방법_선언과 동시에 초기값지정</h3>
+    <script>
+        var arr2=['red','pink','gray','yellow','green'];
+
+        //Hello가 arr2의 갯수만큼 출력되는데 각각 해당색으로<font>
+            for(var i=0;i<arr2.length;i++)
+            {
+                document.write("<font color='"+arr2[i]+"' size='5'>Hello</font>&nbsp;&nbsp;");
+            }
+    </script>
+   
+   <h3>자바스크립트에서 2차원배열선언하는 방법</h3>
+   <script>
+    var arr3=new Array();
+    arr3[0]=['red','장미'];  //0번지 1번지
+    arr3[1]=['pink','다알리아'];
+    arr3[2]=['yellow','후리자아'];
+    arr3[3]=['magenta','국화'];
+
+    for(var i=0;i<arr3.length;i++)
+    {
+        document.write("<font color='"+arr3[i][0]+"' size='5'>"+arr3[i][1]+"</font>&nbsp;&nbsp;");
+    }
+   </script>
+
+<h3>Q. 배열출력</h3>
+<script>
+    var colors=['pink','magenta','cyan','gray','blue','orange'];
+
+    //h2태그로 배열문자열을 해당색으로 출력하기
+    for(var i=0;i<colors.length;i++)
+    {
+        document.write("<h2 style='color:"+colors[i]+";'>"+colors[i]+"</h2>");
+    }
+</script>
+ 
+<h3>배열요소에 추가삭제</h3>
+<script>
+    var foods=new Array();
+
+    foods.push("햄버거");  //배열마지막에 요소 추가  foods[0]="햄버거"와 같다
+    foods.push("스테이크");
+    foods.push("파스타");
+
+    //h3로출력
+    for(var i=0;i<foods.length;i++)
+    {
+        document.write("<h3>"+foods[i]+"</h3>");
+    }
+
+    document.write("--------------------------<br>");
+
+
+    foods.pop();  //마지막 배열값 제거
+    
+    for(var i=0;i<foods.length;i++)
+    {
+        document.write("<h3>"+foods[i]+"</h3>");
+    }
+    document.write("--------------------------<br>");
+    foods.shift(); //배열의 첫번째 요소 제거
+    //foods.unshift();  //배열의 처음에 요소추가
+    
+    console.log(foods);
+
+</script>
+</body>
+</html>

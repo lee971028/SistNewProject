@@ -1,0 +1,21 @@
+.btn{
+    width: 120px;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.btn-green{
+    background-color: green;
+    color: white;
+}
+
+.btn-pink{
+    background-color: pink;
+    color: black;
+}
+
+.btn-black{
+    background-color: black;
+    color: white;
+}

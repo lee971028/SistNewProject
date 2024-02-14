@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function dataOpen()
+        {
+            window.open("dataSend.html","w","width=300,height=200");
+        }
+    </script>
+</head>
+<body>
+    <form action="#" name="frm">
+       <table border="1" style="width: 250px;">
+          <tr>
+            <th>이름</th>
+            <td>
+                <input type="text" name="name" size="12" readonly>
+            </td>
+          </tr>
+
+          <tr>
+            <th>주소</th>
+            <td>
+                <input type="text" name="addr" size="22" readonly>
+            </td>
+          </tr>
+
+          <tr>
+            <th>핸드폰</th>
+            <td>
+                <input type="text" name="hp" size="15" readonly>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2" align="center">
+                <input type="button" value="데이타 입력" onclick="dataOpen()">
+            </td>
+          </tr>
+       </table>
+    </form>
+</body>
+</html>
