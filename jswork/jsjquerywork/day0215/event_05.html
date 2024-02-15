@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        #result{
+            width: 500px;height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-family: 'Nanum Pen Script';
+            font-size: 25px;
+            margin: 20px 50px;
+            border: 2px solid gray;
+            background: url(../image/만화이미지/02.png) no-repeat right bottom;
+            background-size: 50px 60px;
+
+        }
+
+        #imgceleb{
+            border: 5px groove turquoise;
+            margin: 30px 100px;
+        }
+
+    </style>
+    <script>
+        window.onload=function(){
+
+            //버튼1이벤트
+            document.getElementById("btn1").onclick=function(){
+
+                var name=prompt("당신의 이름은?");
+
+                if(name==null)
+                   document.getElementById("result").innerText="<u>취소를 눌렀네요</u>";
+                else
+                document.getElementById("result").innerHTML="<u>당신의 이름은"+name+"입니다!!</u>";
+            }
+
+
+            //버튼2이벤트
+
+            //버튼2를 누르면 prompt창이 나오고 10 이라고 쓰면 10번 사진이 나온다
+            //취소클릭시 경고창에 사진을 바꾸지않겠어요 라고한후 함수종료
+            //음수나 21번 이후숫자를 누르면 1~20까지만 사진이 존재합니다 후 함수종료
+            //숫자에 맞는 사진이 나옵니다
+
+            document.getElementById("btn2").onclick=function(){
+
+                var idx=prompt("1~20사이의 사진번호 입력",1);
+
+                if(idx==null){
+                    alert("사진바꾸지 않을래요");
+                    return;
+                }
+                if(idx<1||idx>20){
+                    alert("1~20까지만 사진입력");
+                    return;
+                }
+
+                //이미지변경
+                var imgpath="../image/연예인사진/"+idx+".jpg";
+
+                imgceleb.setAttribute("src",imgpath);
+            }
+
+            //3번 버튼 입력시 prompt창나오고 이미지의 너비를 입력해 주세요
+            //입력한 너비로 이미지 크기 변경(취소클릭하면 이미지 너비 변경안함 경고창!!)
+
+            document.getElementById("btn3").onclick=function(){
+
+                var change_width=prompt("이미지 너비를 입력해 주세요");
+
+                if(change_width==null)
+                    alert("이미지 너비 변경안함!!!");
+                else
+                 imgceleb.setAttribute("width",change_width);
+            }
+
+            document.getElementById("btn4").onclick=function(){
+
+                imgceleb.setAttribute("src","../image/Food/1.jpg");
+            }
+
+            document.getElementById("btn5").onclick=function(){
+
+                imgceleb.setAttribute("src","../image/Food/2.jpg");
+                }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" class="btn btn-outline-info" id="btn1">이벤트연습_1</button>
+    <button type="button" class="btn btn-outline-success" id="btn2">이벤트연습_2</button>
+    <button type="button" class="btn btn-outline-warning" id="btn3">이벤트연습_3</button><br><br>
+    <button type="button" class="btn btn-outline-danger" id="btn4">샌드위치</button>
+    <button type="button" class="btn btn-outline-danger" id="btn5">꼬치구이</button>
+
+    <div id="result">테스트</div>
+    <img src="../image/연예인사진/20.jpg" width="250" id="imgceleb">
+</body>
+</html>

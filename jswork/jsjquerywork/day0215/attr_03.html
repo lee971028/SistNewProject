@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="../image/Food/1.jpg" id="myimg" width="200">
+    <hr>
+    <button type="button" onclick="attrTest()">사이즈 알아보기</button>
+
+    <hr>
+    <button type="button" onclick="photoLarge()">점점크게</button>
+    <button type="button" onclick="photoSmall()">점점작게</button>
+    
+    
+    <script>
+            function attrTest()
+            {
+                var w=document.getElementById("myimg").getAttribute("width");
+
+                var src=document.getElementById("myimg").getAttribute("src");
+
+
+                alert(w+"\n"+src);
+            }
+
+
+
+            function photoLarge()
+            {
+                var p=document.getElementById("myimg");
+
+                var w=p.getAttribute("width");
+
+                //console.log(typeof(w));  //String 타입의 숫자를 int타입으로 변경
+                w= parseInt(w);
+
+                w+=10;
+
+                console.log(w);
+
+                p.setAttribute("width",w);
+
+
+            }
+
+            function photoSmall()
+            {
+                var p=document.getElementById("myimg");
+
+                var w=p.getAttribute("width");
+
+                //console.log(typeof(w));  //String 타입의 숫자를 int타입으로 변경
+                //w= parseInt(w);  String 타입이라 하더라도 -나 *는 숫자로 계산됨(+만 안됨)
+
+                w-=10;
+                console.log(w);
+
+                p.setAttribute("width",w);
+            }
+    </script>
+</body>
+</html>

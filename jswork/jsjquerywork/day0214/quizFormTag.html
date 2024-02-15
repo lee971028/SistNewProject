@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Document</title>
     <style>
-        table{
-            border-collapse: collapse;
-            width: 500px;
-            border: 3px solid gray;
-        }
-        th,td{
-            border: 1px solid gray;
-        }
+        
 
         #result{
             font-family: 'Nanum Pen Script';
@@ -32,7 +26,30 @@
 
                 var s="";
                 s="이름: "+document.getElementById("name").value+"<br>";
+                s+="비밀번호: "+document.getElementById("pass").value+"<br>";
 
+
+                //혈액형 ...form의 name을 통해서 접근후 바로 출력가능
+                s+="혈액형: "+frm.blood.value+"형<br>";
+
+                //가능언어는 복수출력 혹은 가능언어없음
+               // s+="가능언어: "+frm.lang.value+"<br>";  //안됨
+
+               console.log(frm.lang.length);  //lang의 갯수
+               //for문
+               var lg="";
+               for(var i=0;i<frm.lang.length;i++)
+               {
+                  //체크박스는 선택된 경우에만 value값을 얻어야함
+                  if(frm.lang[i].checked) //체크일경우true,아닐경우 false
+                  {
+                        lg+="["+frm.lang[i].value+"]";
+                  }
+               }
+
+               s+="가능언어: "+(lg.length==0?"가능언어없음":lg)+"<br>";
+
+                s+="입사일자: "+document.getElementById("ipsa").value+"<br>";
 
                 document.getElementById("result").innerHTML=s;
             }
@@ -40,20 +57,20 @@
     </script>
 </head>
 <body>
-    <form>
-        <table>
+    <form name="frm">
+        <table class="table table-bordered" style="width: 500px;">
             <caption><b>폼태그 과제_개인정보</b></caption>
             <tr>
-                <th>이름</th>
+                <th  class="table-primary">이름</th>
                 <td>
-                    <input type="text" id="name" size="10" placeholder="이름">
+                    <input type="text" id="name"  placeholder="이름" class="form-control"
+                    style="width: 120px;">
                 </td>
-            </tr>
 
-            <tr>
-                <th>비밀번호</th>
+            <tr >
+                <th class="table-info">비밀번호</th>
                 <td>
-                    <input type="password"  size="12" placeholder="비밀번호">
+                    <input type="password"  size="12" placeholder="비밀번호" id="pass">
                 </td>
             </tr>
 
@@ -85,7 +102,7 @@
 
             <tr>
                 <td align="center" colspan="2">
-                    <input type="button" id="btnResult" value="결과출력">
+                    <input type="button" id="btnResult" value="결과출력" class="btn btn-warning">
                 </td>
             </tr>
         </table>

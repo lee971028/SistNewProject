@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <script>
+        /*3개의 버튼에 부트스트랩 적용하고 각각의 버튼을 클릭하면 result에 해당이미지를 출력하세요
+        (단, 출력시마다 만화이미지를 출력할까요? 물어보고 예일 경우메만 이미지출력*/
+       function buttonComic()
+       {
+          var a=confirm("만화이미지를 출력할까요?");
+
+          if(a){
+
+            document.getElementById("result").innerHTML="<img src='../image/만화이미지/06.png'>";
+          }
+       }
+
+       function buttonFood()
+       {
+            var a=confirm("음식이미지를 출력할까요?");
+
+            if(a){
+
+                document.getElementById("result").innerHTML="<img src='../image/Food/1.jpg' class='rounded-circle'>";
+            }
+       }
+
+
+       window.onload=function(){
+        document.getElementById("btnCeleb").onclick=function(){
+
+            var a=confirm("연예인이미지를 출력할까요?");
+
+                if(a){
+
+                    document.getElementById("result").innerHTML="<img src='../image/연예인사진/1.jpg' class='rounded-circle'>";
+                }
+            }
+       }
+       
+    </script>
+</head>
+<body>
+    <button type="button" onclick="buttonComic()" class="btn btn-outline-info">만화이미지</button>
+    <button type="button" onclick="buttonFood()" class="btn btn-outline-warning">음식이미지</button>
+    <button type="button" id="btnCeleb" class="btn btn-outline-success">연예인이미지</button>
+    <hr>
+    <div id="result"></div>
+</body>
+</html>

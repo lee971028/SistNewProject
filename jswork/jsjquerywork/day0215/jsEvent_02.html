@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <script>
+
+            var imgArr=new Array();
+            imgArr[0]="../image/Food/1.jpg";
+            imgArr[1]="../image/Food/2.jpg";
+            imgArr[2]="../image/Food/5.jpg";
+            imgArr[3]="../image/Food/10.jpg";
+            imgArr[4]="../image/Food/11.jpg";
+            //imgArr.push("../image/Food/1.jpg");
+
+        function showImage()
+        {
+            var idx=prompt("인덱스번호를 입력해주세요",0);
+
+            if(idx<0||idx>4)
+                 document.getElementById("result").innerHTML="해당번호의 이미지는 없습니다";
+            else
+                document.getElementById("result").innerHTML="<img src='"+imgArr[idx]+"' class='img-thumbnail'>";
+    
+        }
+    </script>
+</head>
+<body>
+    <!-- 이미지출력 이라는 버튼을 만들고 버튼을 클릭하면 prompt창이 나온다
+    창에는 인덱스번호를 입력해주세요 라고 출력해준후 0이라고 입력시 0번이미지 나온다
+    총 5개의 이미지를 imgArr에 배열형태로 넣고 자유로운 이미지 넣어줍니다(단 배열인덱스에 없는 값 입력시 해당번호의 이미지는
+    없습니다 라고 출력합니다) 이미지와 버튼은 부트스트랩 이용합니다-->
+    <button type="button" class="btn btn-success" onclick="showImage()">이미지출력</button>
+    <hr>
+    <div id="result"></div>
+</body>
+</html>
