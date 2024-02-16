@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #photo_zone{
+             position: absolute;
+             left: 50px;
+             top: 100px;
+             width: 380px;
+             height: 550px;
+             border: 2px solid gray;
+             padding: 10px 10px;
+
+        }
+
+        #main_zone{
+            position: absolute;
+            left: 500px;
+            top: 120px;
+        }
+        #large_photo{
+            width: 400px;
+            height: 450px;
+            border: 10px groove gray;
+        }
+        .sphoto{
+            width: 60px;
+            height: 60px;
+            border: 1px solid gray;
+            margin: 5px 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="photo_zone">
+       <script>
+        for(var i=1;i<=35;i++)
+        {
+            if(i==23) continue;
+            document.write("<img src='../image/쇼핑몰사진/"+i+".jpg' class='sphoto'>");
+        }
+       </script>
+    </div>
+    <div id="main_zone">
+        <img src="../image/logoImg/toy01.png" id="large_photo">
+    </div>
+
+    <script>
+        //작은이미지에 마우스 올리면 큰이미지에 나타나기
+
+        //class 배열얻기
+        //var sphoto=document.getElementsByClassName("sphoto"); 방법1
+        var sphoto=document.querySelectorAll(".sphoto"); //방법2
+
+        for(var i=0;i<sphoto.length;i++)
+        {
+            //현재이벤트 사진얻기
+            sphoto[i].onmouseover=function(){
+
+                var selimg=this.getAttribute("src");
+
+                //위의 사진경로를 id가 large_photo인 이미지에 적용
+                document.getElementById("large_photo").setAttribute("src",selimg);
+            }
+        }
+    </script>
+</body>
+</html>

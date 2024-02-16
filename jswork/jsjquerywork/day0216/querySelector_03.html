@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 50px;
+            margin: 3px;
+            text-align: center;
+            line-height: 50px;
+            color: blueviolet;
+            background: gold;
+        }
+        #green{
+            color: white;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="green"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box blue"></div>
+
+    <script>
+        //getElementByTagName
+        var divAll=document.getElementsByTagName('div');
+
+        for(var i=0;i<divAll.length;i++){
+            divAll[i].style.border='5px solid gray';
+        }
+
+        //getElementByClassName
+        var boxAll=document.getElementsByClassName('box');
+
+        for(var i=0;i<boxAll.length;i++){
+            boxAll[i].innerText='box item';
+        }
+
+        //getElementById
+        var greenBox=document.getElementById('green');
+        greenBox.innerText='Green Box';
+
+        //querySelector
+       var qs= document.querySelector('div');
+       qs.style.backgroundColor='magenta';
+
+        //querySelectorAll
+        var qsa=document.querySelectorAll('div');
+
+        for(var i=0;i<qsa.length;i++){
+            qsa[i].innerText='안녕?';
+        }
+    </script>
+   <hr>
+   <img src="../image/만화이미지/01.png" class="imga">
+   <img src="../image/만화이미지/02.png" class="imga">
+   <img src="../image/만화이미지/03.png" class="imga">
+   <img src="../image/만화이미지/04.png" class="imga">
+   <hr>
+   <img src="../image/Food/1.jpg" class="imgb">
+   <img src="../image/Food/2.jpg" class="imgb">
+   <img src="../image/Food/3.jpg" class="imgb">
+   <img src="../image/Food/4.jpg" class="imgb">
+
+   <script>
+      //같은 class가 여러개일때 모든클래스에 같은스타일 이벤트 적용
+      //방법#1
+      var s1=document.getElementsByClassName("imgb");
+      //s1변수는 배열
+      console.log("s1="+s1.length); 
+      //0번배열의 너비를 150px로 변경
+      s1[0].style.width="150px";
+      //1번배열 너비 300
+      s1[1].style.width="300px";
+      //2번 보더 변경
+      s1[2].style.border="10px inset green";
+
+      //s1배열전체의 border-radius를 200px로 변경
+      for(var i=0;i<s1.length;i++)
+         s1[i].style.borderRadius="200px";
+
+     //of 
+     for(var s of s1)
+       s.style.borderRadius="100px";
+
+    //방법#2
+   var imga=document.querySelectorAll(".imga");
+
+   //for문으로 마우스이벤트
+  // var myphoto="";
+
+   for(var s of imga)
+   {
+       s.onmouseover=function(){
+
+         //기존사진 경로 얻어놓기
+        myphoto=this.getAttribute("src"); //var 안붙히면 자동 전역변수
+
+         //이미지변경
+         this.setAttribute("src","../image/만화이미지/05.png");
+       } 
+
+
+       //마우스 벗어나면 다시 원래사진
+       s.onmouseout=function(){
+        this.setAttribute("src",myphoto);
+       }
+   }
+
+   </script>
+</body>
+</html>

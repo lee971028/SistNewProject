@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img1{
+            position: absolute;
+            max-width: 300px;
+            left: 500px;
+            top: 50px;
+            border: 10px solid olive;
+            border-radius: 30px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //이미지선택
+            document.getElementById("selImage").onclick=function(){
+
+                img1.setAttribute("src",this.value);
+            }
+
+            //선종류
+           var line= document.getElementsByName("line");
+
+           for(var i=0;i<line.length;i++){
+
+               line[i].onclick=function(){
+                  img1.style.borderStyle=this.value;
+               }
+           }
+        }
+    </script>
+</head>
+<body>
+    <h3>이미지선택</h3>
+    <select id="selImage">
+        <option value="../image/Food/1.jpg">메뉴1</option>
+        <option value="../image/Food/2.jpg">메뉴2</option>
+        <option value="../image/Food/3.jpg">메뉴3</option>
+        <option value="../image/Food/4.jpg">메뉴4</option>
+    </select>
+    <br><br>
+    <h3>선종류선택</h3>
+    <input type="radio" value="solid" name="line" >Solid
+    <input type="radio" value="dotted" name="line" >Dot
+    <input type="radio" value="dashed" name="line" >Dash
+    <input type="radio" value="double" name="line" >Double
+    <input type="radio" value="groove" name="line" >Groove
+    <input type="radio" value="inset" name="line" >Inset
+
+    <img src="../image/Food/1.jpg" id="img1">
+</body>
+</html>
