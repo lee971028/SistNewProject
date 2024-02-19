@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+
+            //결과출력하기
+            var result=document.getElementById("result");
+
+            document.getElementById("btnresult").onclick=function(){
+
+                var s="<h2>폼태그 결과 출력</h2>";
+
+                s+="나의 직업: "+frm.job.value+"<br>";
+                s+="나의 키: "+frm.height.value+"Cm<br>";
+                s+="나의 몸무게: "+frm.weight.value+"Kg<br>";
+                s+="나의 호감도: "+p.value+"<br>";
+
+
+                result.innerHTML=s;
+            }
+
+          //측정버튼을 누르면 나의호감도를 알려준다
+          //30~100 사이의 난수를 구한다. 증가한 호감도가 난수까지 증가하면 타이머 끝낸다
+          var p=document.getElementById("p");
+          var pout=document.getElementById("pout");
+
+          document.getElementById("btnp").onclick=function(){
+
+            //30~100난수
+            var hogam=parseInt(Math.random()*71)+30;
+            var i=0;
+
+            inter=setInterval(function(){
+                i++;
+                p.value=i;
+                pout.innerHTML="<b style='color:red;'>"+i+"</b>";
+
+                //i가 구한 난수까지 증가하면 타이머 끝낸다
+                if(i==hogam){
+                    clearInterval(inter);
+                }
+
+            },30);
+          }
+
+
+        }
+    </script>
+</head>
+<body>
+    <form name="frm">
+        <table class="table table-bordered" style="width: 500px;">
+            <tr>
+                <td>
+                    <b>당신의 직업을 입력하시오</b>
+                    <input type="text" name="job" style="width: 150px;"
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>당신의 키와 몸무게를 선택하시오</b>
+                    <input type="number" name="height" max="200" min="120"
+                    step="5" value="170" placeholder="키 입력">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="number" name="weight" max="120" min="40"
+                    step="2" value="50" placeholder="몸무게 입력">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>당신에 대한 호감도는?</b>
+                    <progress id="p" value="0" max="100"></progress>
+                    &nbsp;&nbsp;
+                    <span id="pout">0</span>&nbsp;&nbsp;
+                    <button type="button" id="btnp">측정</button>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <button type="button" id="btnresult"
+                    class="btn btn-success">결과확인</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div style="margin-top: 30px; font-family: 'Dongle'; font-size: 25px; padding: 20px 30px;" id="result">
+        결과출력....
+    </div>
+
+    
+</body>
+</html>

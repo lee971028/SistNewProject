@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        #photo{
+            width: 400px;
+            height: 460px;
+            border: 10px groove gray;
+        }
+
+        .msg{
+            font-family: 'Gaegu';
+            font-size: 26px;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+
+            var p=document.getElementById("photo");
+            var m=document.querySelector(".msg");
+          
+
+           
+           var msgarr=["아름다운 밤이에요~~","오늘은 비가 오네요","이제는 봄","내가좋아하는 연예인"];
+            var mcolorarr=['magenta','gray','green','cyan','orange','brown'];
+
+             //3초마다 연예인사진이 랜덤하게 바뀌게 하기(1~20)
+            setInterval(function(){
+
+                //1~20난수
+                var num=parseInt(Math.random()*20)+1;
+
+                //이미지변경
+                p.setAttribute("src","../image/연예인사진/"+num+".jpg");
+
+            },3000);
+
+
+            //1초마다 메세지가 랜덤하게 msgarr로 변하기(0~3)
+           /* setInterval(function(){
+                var midx=parseInt(Math.random()*4); //0~3사이 랜덤
+                var cidx=parseInt(Math.random()*6);//0~5사이 랜덤
+
+                m.style.color=mcolorarr[cidx];
+                m.innerHTML=msgarr[midx];
+            },1000);*/
+
+            //화살표함수
+            setInterval(()=>{
+                var midx=parseInt(Math.random()*4); //0~3사이 랜덤
+                var cidx=parseInt(Math.random()*6);//0~5사이 랜덤
+
+                m.style.color=mcolorarr[cidx];
+                m.innerHTML=msgarr[midx];
+            },1000);
+
+
+        }
+    </script>
+</head>
+<body>
+    <img src="../image/연예인사진/15.jpg" id="photo">
+    <div class="msg">메세지출력...</div>
+</body>
+</html>

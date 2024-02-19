@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myimg{
+            position: absolute;
+        }
+    </style>
+    <!-- 초기값 xpos:500 ypos:500 방향키누를시 10씩이동
+    엔터누르면 다시 처음위치 -->
+    <script>
+        var xpos=700;
+        var ypos=300;
+
+        window.onload=function(){
+
+            var myimg=document.getElementById("myimg");
+            myimg.style.top=ypos+"px";
+            myimg.style.left=xpos+"px";
+
+
+            //키보드이벤트 아스키코드값 확인
+            window.onkeydown=function(e){
+
+                console.log(e.keyCode);
+                //상:38 하:40 우:39 좌:37  엔터:13
+                switch(e.keyCode){
+                    case 38:
+                        ypos-=10;
+                        myimg.style.top=ypos+"px";
+                        break;
+                    case 40:
+                        ypos+=10;
+                        myimg.style.top=ypos+"px";
+                        break;
+                    case 39:
+                        xpos+=10;
+                        myimg.style.left=xpos+"px";
+                        break;
+                    case 37:
+                        xpos-=10;
+                        myimg.style.left=xpos+"px";
+                        break;
+                    case 13:
+                        xpos=700;
+                        ypos=300;
+                        myimg.style.top=ypos+"px";
+                        myimg.style.left=xpos+"px";
+                        break;
+
+
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+   <img src="../image/만화이미지/05.png" id="myimg">
+</body>
+</html>
