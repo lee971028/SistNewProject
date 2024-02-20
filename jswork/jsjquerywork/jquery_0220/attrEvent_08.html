@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+
+
+            var imgArr=new Array(5);
+            imgArr[0]="../image/만화이미지/01.png";
+            imgArr[1]="../image/만화이미지/02.png";
+            imgArr[2]="../image/만화이미지/05.png";
+            imgArr[3]="../image/만화이미지/07.png";
+            imgArr[4]="../image/만화이미지/08.png";
+
+            //모든이미지에 같은이미지 를 넣고 width,height,border설정
+            $("img").attr("src","../image/연예인사진/11.jpg").css({
+                "width":"200px",
+                "border":"1px solid green"
+            })
+            //img태그에 마우스올리면 배열 5개중 한개가 랜덤으로 나온다
+            $("img").mouseover(function(){
+
+                //현재이미지얻기
+                currImg=$(this).attr("src");
+
+                //랜덤0~4
+                var ranIdx=parseInt(Math.random()*5);
+
+                $(this).attr("src",imgArr[ranIdx]);
+            });
+            //마우스벗어나면 다시 원래의 이미지
+            $("img").mouseout(function(){
+                $(this).attr("src",currImg);
+            })
+        });
+    </script>
+</head>
+<body>
+    <img src="">
+    <img src="">
+    <img src="">
+    <img src="">
+    <img src="">
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+
+            //attr("속성") :속성값 반환
+            //attr("속성","값") : 해당속성을 값을로 변경
+
+            //박보영 사진을 마우스 갖다대면 17번 신민아로 마우스 벗어나면 다시 박보영
+           /*$("img:eq(0)").mouseover(function(){
+
+                bySrc=$(this).attr("src");
+                $(this).attr("src","../image/연예인사진/17.jpg");
+            });*/
+
+            $("img:eq(0)").mouseout(function(){
+                $(this).attr("src",bySrc);
+            })
+            
+            //hover =mouseover+mouseout
+            $("h2").hover(function(){
+                $(this).css("background-color","yellow");
+            },function(){
+                $(this).css("background-color","white");
+            });
+
+            //박보영을 클릭시 4번째사진이 박보영으로 바뀌게 하시오.src,width도 적용
+            $("img:eq(0)").click(function(){
+
+                //현재이미지
+                var curName=$(this).attr("src");
+                //너비
+                var curW=$(this).attr("width");
+
+                //3번인덱스의 이미지 적용
+                $("img:eq(3)").attr("src",curName).css("width",curW);
+
+
+                 //박보영의 irum속성을  3번인덱스 이미지 아래(after)에 b태그로 나타내시오
+                 //append: 특정태그 이후에 추가하기
+                 //after: 특정태그 아래 안으로 추가하기
+                 var curIrum=$(this).attr("irum");
+                 $("img:eq(3)").after("<b>"+curIrum+"</b><br>");
+            });
+
+
+            //hover이용 모든 h3에 마우스올리면 글자색바뀌고 마우스벗어나면 다시처음글자색
+            $("h3").hover(function(){
+                $(this).css("color","green");
+            },function(){
+                $(this).css("color","black");
+            });
+
+            //음식사진 클릭시 src와 width얻어서 img중 음식사진들복사 아래 이미지에 모두 같은 이미지로 넣기
+            //lt: 이전  gt:이후 gt(2):2번포함안된 2번이후 
+            $("figure>img").click(function(){
+
+                //해당이미지 src얻기
+                var selImg=$(this).attr("src");
+                var selW=$(this).attr("width");
+
+                //3번이후 모든 img에 적용
+                $("img:gt(3)").attr("src",selImg).css("width",selW);
+
+                //클릭한 이미지 다음태그 안의 text를 얻어서 2번째 h3에 적용
+                //next():다음태그
+                //prev():이전태그
+
+                var foodName=$(this).next().text();
+                $("h3:eq(1)").html(foodName);
+            });
+
+
+            
+        })
+    </script>
+</head>
+<body>
+    <h2>박보영 사진을 마우스 갖다대면 17번 신민아로 마우스 벗어나면 다시 박보영</h2>
+    <img src="../image/연예인사진/12.jpg" width="200" irum="박보영"><br>
+
+    <h3>음식사진들</h3>
+    <figure>
+        <img src="../image/Food/1.jpg" width="150">
+        <figcaption>에그샌드위치</figcaption>
+    </figure>
+    <figure>
+        <img src="../image/Food/10.jpg" width="150">
+        <figcaption>스팸에그마요덮밥</figcaption>
+    </figure>
+
+    <h3>그냥이미지들</h3>
+    <img src="">
+
+    <h3></h3>
+    <img src="">
+    <img src="">
+    <img src="">
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        .bg_0{background-color: orange; color: blue;}
+        .bg_1{background-color: pink; color: black;}
+        .bg_2{background-color: cyan; color: white;}
+        .bg_3{background-color: blueviolet; color: white;}
+        .bg_4{background-color: beige; color: gray;}
+
+        ul li{width: 150px;}
+    </style>
+</head>
+<body>
+    <b></b><b></b><b></b><b></b><b></b>
+
+    <!-- 태그 반복할때 사용하는 each문 -->
+
+    <script>
+        //b태그 갯수만큼 자동반복
+        //i는 index: 0부터
+        //element 는 인덱스에 해당하는 b태그 (생략가능)
+        $("b").each(function(i,ele){
+           // $(this).text(i);
+           $(ele).text(i);
+        })
+    </script>
+
+    <hr>
+    <ul>
+        <li>apple</li>
+        <li>orange</li>
+        <li>banana</li>
+        <li>kiwi</li>
+        <li>blueberry</li>
+    </ul>
+
+    <script>
+        // $("ul li").each(function(idx){
+        //     $(this).addClass("bg_"+idx);
+        // })
+
+        $("ul li").each(function(idx,ele){
+            $(ele).addClass("bg_"+idx);
+        });
+
+
+        //li에 마우스 올려서 뒤에 ***출력
+        //append after 추가비교
+
+        $("ul li").mouseover(function(){
+
+            //$(this).append("<b>****</b>");
+             //li태그뒤에 b태그가 추가된다
+            $(this).after("<b>****</b>");
+        });
+
+        $("ul li").mouseout(function(){
+             //find: 하나상위로 올라가서 찾을때..하위태그 b태그를 찾아서 제거
+            // $(this).find("b").remove();
+
+            //현재이벤트 발생하는 li태그 다음태그를 제거
+            $(this).next().remove();
+        })
+
+    </script>
+</body>
+</html>

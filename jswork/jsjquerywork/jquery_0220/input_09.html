@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h3>R,G,B색상 입력하기</h3>
+    R:<input type="text" value="255" id="txtr">&nbsp;&nbsp;&nbsp;
+    G:<input type="text" value="0" id="txtg">&nbsp;&nbsp;&nbsp;
+    B:<input type="text" value="255" id="txtb">&nbsp;&nbsp;&nbsp;
+
+    <div></div>
+
+
+    <script>
+
+      //text() : 선택된 요소의 텍스트값을 설정,반환
+      //html() : 선택된 요소자체를 설정,반환
+      //val() : 폼 필드의 값을 설정하거나 해당값 반환
+
+
+        $("input[type='text']").css({
+            "border":"2px solid gray",
+            "width":"100px",
+            "height":"30px",
+            "font-size":"17pt"
+        });
+
+        var r=255,g=0;b=255;
+        var color="rgb("+r+","+g+","+b+")";
+
+        $("div").css({
+            "width":"500px",
+            "height":"200px",
+            "border":"5px solid gray",
+            "background-color":color,
+            "margin-top":"50px"
+        });
+
+        //이벤트
+        $("#txtr").keyup(function(){
+
+            r=$(this).val();
+            color="rgb("+r+","+g+","+b+")";
+            $("div").css("background-color",color);
+        })
+
+        $("#txtg").keyup(function(){
+
+            g=$(this).val();
+            color="rgb("+r+","+g+","+b+")";
+            $("div").css("background-color",color);
+            })
+
+        $("#txtb").keyup(function(){
+
+            b=$(this).val();
+            color="rgb("+r+","+g+","+b+")";
+            $("div").css("background-color",color);
+            })
+    </script>
+</body>
+</html>

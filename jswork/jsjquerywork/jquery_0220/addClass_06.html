@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 130px;
+            text-align: center;
+            line-height: 130px;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .hello_0{
+            border: 10px double gray;
+            font-family: 'Gaegu';
+            background-color: pink;
+            color: white;
+        }
+        .hello_1{
+            border: 10px solid pink;
+            font-family: 'Dongle';
+            background-color: gray;
+            color: blue;
+        }
+        .hello_2{
+            border: 10px inset rebeccapurple;
+            font-family: 'Nanum Pen Script';
+            background-color: lightsalmon;
+            color: green;
+        }
+        .hello_3{
+            border: 10px dashed gray;
+            font-family: 'Noto Sans KR';
+            background-color: green;
+            color: white;
+        }
+        .hello_4{
+            border: 10px dotted magenta;
+            font-family: 'Dongle';
+            background-color: lightcyan;
+            color: blue;
+        }
+
+    </style>
+    <script>
+        $(function(){
+
+            $("button:eq(0)").click(function(){
+                $("div").each(function(idx){
+                    $(this).addClass("hello_"+idx);
+                })
+            })
+
+            $("button:eq(1)").click(function(){
+                $("div").removeClass();  //모든클래스 제거
+            })
+        })
+    </script>
+</head>
+<body>
+    <button type="button" class="btn btn-info">스타일적용</button>
+    <button type="button" class="btn btn-danger">스타일제거</button>
+
+    <div>안녕하세요</div>
+    <div>오늘은 addClass</div>
+    <div>배우는날</div>
+    <div>each문도</div>
+    <div>어렵지 않아요</div>
+</body>
+</html>
