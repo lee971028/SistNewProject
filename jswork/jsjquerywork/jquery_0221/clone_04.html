@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+
+    <script>
+        $(function(){
+
+            $("#btn1").click(function(){
+
+                //box1아래 모든img태그 복사
+                 //var num1=$("#box1").find("img").clone();
+                 var num1=$("#box1 img").clone();
+
+                 //3번영역에 추가
+                 $("#box3").append(num1);
+            });
+
+            $("#btn2").click(function(){
+
+                var num2=$("#box2>img").clone();
+                $("#box4").append(num2);
+            })
+
+            $("#btn3").click(function(){
+                $("#box3").find("img").remove();
+                $("#box4").find("img").remove();
+            })
+        })
+    </script>
+</head>
+<body>
+    <button type="button" class="btn btn-info" id="btn1">1번영역복사해서 3번영역에 추가</button><br>
+    <button type="button" class="btn btn-success" id="btn2">2번영역복사해서 4번영역에 추가</button><br>
+    <button type="button" class="btn btn-warning" id="btn3">3,4번 영역 지우기</button><br>
+    <hr>
+
+    <div id="box1">
+        <b>1번영역</b>
+        <img src="../image/jquery_img/01.png">
+        <img src="../image/jquery_img/02.png">
+    </div>
+
+    <div id="box2">
+        <b>2번영역</b>
+        <img src="../image/jquery_img/03.png">
+        <img src="../image/jquery_img/04.png">
+    </div>
+
+    <div id="box3">
+        <b>3번영역</b>
+    </div>
+
+    <div id="box4">
+        <b>4번영역</b>
+    </div>
+</body>
+</html>

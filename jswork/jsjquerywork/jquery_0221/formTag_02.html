@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <table class="table table-bordered" style="width: 400px;">
+       <tr>
+        <th class="table-success">이름</th>
+        <td>
+            <input type="text" id="name" style="width: 100px;" class="form-control">
+        </td>
+       </tr>
+
+       <tr>
+        <th class="table-success">자바</th>
+        <td>
+            <input type="text" id="java" style="width: 120px;" class="form-control">
+        </td>
+       </tr>
+       <tr>
+        <th class="table-success">제이커리</th>
+        <td>
+            <input type="text" id="jquery" style="width: 120px;" class="form-control">
+        </td>
+       </tr>
+
+       <tr>
+        <th class="table-success">오라클</th>
+        <td>
+            <input type="text" id="oracle" style="width: 120px;" class="form-control">
+        </td>
+       </tr>
+
+       <tr>
+        <td colspan="2" align="center">
+            <button type="button" class="btn btn-success" id="btn">결과출력</button>
+        </td>
+       </tr>
+
+       <tr height="150">
+        <td colspan="2">
+            <div id="result"></div>
+        </td>
+       </tr>
+    </table>
+
+    <script>
+        //버튼이벤트
+        $("#btn").click(function(){
+
+            var name=$("#name").val();
+            var java=$("#java").val();
+            var jquery=$("#jquery").val();
+            var oracle=$("#oracle").val();
+
+            //이름을 쓰지않을경우 경고창
+            if(name.length==0){
+                alert("이름을 입력해주세요");
+                $("#name").focus();
+                return;
+            }
+
+            //문자열입력시 혹은 입력안할경우 경고창
+            if(isNaN(java) || java.length==0){
+                alert("자바점수는 반드시 숫자로만 입력해주세요");
+                $("#java").focus();
+                return;
+            }
+
+            if(isNaN(jquery) || jquery.length==0){
+                alert("제이커리점수는 반드시 숫자로만 입력해주세요");
+                $("#jquery").focus();
+                return;
+            }
+
+            if(isNaN(oracle) || oracle.length==0){
+                alert("오라클점수는 반드시 숫자로만 입력해주세요");
+                $("#oracle").focus();
+                return;
+            }
+
+            //총점
+            var sum=parseInt(java)+parseInt(jquery)+parseInt(oracle);
+
+            //평균
+            var avg=sum/3;
+
+            //출력
+            var s="[컴퓨터언어능력 테스트]<br><br>";
+            s+="학생명: "+name+"<br>";
+            s+="자바점수: "+java+"점<br>";
+            s+="제이커리점수: "+jquery+"점<br>";
+            s+="오라클점수: "+oracle+"점<br>";
+            s+="총점: "+sum+"점<br>";
+            s+="평균: "+avg+"점<br>";
+
+            $("#result").html(s).css({
+                "font-family":"Nanum Pen Script",
+                "font-size":"25px",
+                "background-color":"#ff0000"
+            });
+
+        })
+
+    </script>
+</body>
+</html>

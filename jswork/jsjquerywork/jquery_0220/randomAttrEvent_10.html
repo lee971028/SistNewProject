@@ -33,7 +33,7 @@
        for(var i=0;i<$("div").length;i++)
        {
           //rgb 색상얻어
-          var r=parseInt(Math.random()*256);
+          var r=parseInt(Math.random()*256);//0~255
           var g=parseInt(Math.random()*256);
           var b=parseInt(Math.random()*256);
 
@@ -47,7 +47,7 @@
        $("div").click(function(){
           var rndbg=$(this).css("background-color");
           $("span").text(rndbg);
-       })
+       });
     </script>
 </body>
 </html>

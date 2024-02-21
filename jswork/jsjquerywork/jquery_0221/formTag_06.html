@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        #result{
+            width: 500px;
+            height: 300px;
+            border: 2px solid gray;
+            padding: 10px 10px;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <legend>폼태그 복습</legend>
+        <table class="table table-bordered" style="width: 500px;">
+            <tr>
+                <th class="table-success">이름</th>
+                <td>
+                    <input type="text" class="form-control" id="myname" style="width: 150px;">
+                </td>
+            </tr>
+            <tr>
+                <th class="table-success">성별</th>
+                <td>
+                    <label><input type="checkbox"  id="chkgender" >&nbsp;남자</label>
+                </td>
+            </tr>
+       
+            <tr>
+                <th class="table-success">생년월일</th>
+                <td>
+                    <input type="date"  id="mybirth" >
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-success">거주지</th>
+                <td>
+                    <label><input type="radio"  name="hometown" value="서울" checked>&nbsp;서울</label>
+                    <label><input type="radio"  name="hometown" value="경기">&nbsp;경기</label>
+                    <label><input type="radio"  name="hometown" value="부산">&nbsp;부산</label>
+                    <label><input type="radio"  name="hometown" value="인천">&nbsp;인천</label>
+                    <label><input type="radio"  name="hometown" value="제주">&nbsp;제주</label>
+                    
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-success">취미</th>
+                <td>
+                    <label><input type="checkbox"  name="hobby" value="게임" checked>&nbsp;게임</label>
+                    <label><input type="checkbox"  name="hobby" value="여행">&nbsp;여행</label>
+                    <label><input type="checkbox"  name="hobby" value="코딩">&nbsp;코딩</label>
+                    <label><input type="checkbox"  name="hobby" value="넷플릭스">&nbsp;넷플릭스</label>
+                    <label><input type="checkbox"  name="hobby" value="공부">&nbsp;공부</label>
+                    
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-success">글꼴선택</th>
+                <td>
+                    <select id="selfont">
+                        <option>Gaegu</option>
+                        <option>Dongle</option>
+                        <option>Nanum Pen Script</option>
+                        <option>Noto Sans KR</option>
+                        <option>Noto Serif KR</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="button" class="btn btn-success"
+                    id="btnshow">결과출력</button>
+                </td>
+            </tr>
+        </table>
+
+        <div id="result"></div>
+    </form>
+</body>
+</html>

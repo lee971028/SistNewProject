@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        #msg{
+            position: absolute;
+            left: 100px;
+            top: 350px;
+            font-size: 3em;
+            font-family: 'Gaegu';
+        }
+
+        #img1{
+            position: absolute;
+            left: 300px;
+            top:450px;
+        }
+
+    </style>
+</head>
+<body>
+    <button type="button" class="btn btn-outline-info" id="btn1">Hide</button>
+    <button type="button" class="btn btn-outline-info" id="btn2">Show</button>
+    <button type="button" class="btn btn-outline-info" id="btn3">Toggle</button>
+    <br>
+    <button type="button" class="btn btn-outline-info" id="btn4">SlideUp</button>
+    <button type="button" class="btn btn-outline-info" id="btn5">SlideDown</button>
+    <button type="button" class="btn btn-outline-info" id="btn6">SlideToggle</button>
+    <br>
+    <button type="button" class="btn btn-outline-info" id="btn7">FadeOut</button>
+    <button type="button" class="btn btn-outline-info" id="btn8">FadeIn</button>
+    <button type="button" class="btn btn-outline-info" id="btn9">FadeToggle</button>
+    <button type="button" class="btn btn-outline-info" id="btn10">FadeTo</button>
+
+
+    <div id="msg">오늘은 비오는 수요일</div>
+    <img src="../image/jquery_img/c5.png" id="img1">
+
+    <script>
+        $("#btn1").click(function(){
+            $("#msg").hide(); //slow,fast로 효과
+            $("#img1").hide();
+        })
+
+        $("#btn2").click(function(){
+            $("#msg").show(); //slow,fast로 효과
+            $("#img1").show();
+        })
+
+        $("#btn3").click(function(){
+            $("#msg").toggle(); //slow,fast로 효과
+            $("#img1").toggle();
+        })
+
+        $("#btn4").click(function(){
+            $("#msg").slideUp();
+            $("#img1").slideUp();
+        })
+
+        $("#btn5").click(function(){
+            $("#msg").slideDown();
+            $("#img1").slideDown();
+        })
+
+        $("#btn6").click(function(){
+            $("#msg").slideToggle();
+            $("#img1").slideToggle();
+        })
+
+        $("#btn7").click(function(){
+            $("#msg").fadeOut();
+            $("#img1").fadeOut();
+        })
+
+        $("#btn8").click(function(){
+            $("#msg").fadeIn();
+            $("#img1").fadeIn();
+        })
+
+        $("#btn9").click(function(){
+            $("#msg").fadeToggle();
+            $("#img1").fadeToggle();
+        })
+
+        $("#btn10").click(function(){
+
+            //3초동안 반투명이 된후 함수실행
+            $("#msg").fadeTo(3000,0.5,function(){
+                $("#msg").css("border","10px dotted pink");
+            });
+
+            $("#img1").fadeTo(3000,0.2,function(){
+                $(this).css("opacity","1");
+            })
+        })
+    </script>
+</body>
+</html>

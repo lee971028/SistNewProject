@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        #result{
+            margin-top: 30px;
+            width: 500px;
+            height: 200px;
+            padding: 10px 10px;
+            border: 1px solid gray;
+        }
+    </style>
+
+    <script>
+        $(function(){
+
+            //핸드폰 4글자 입력시 다음칸으로 이동
+            $("#hp2").keyup(function(){
+                if($(this).val().length==4)
+                $("#hp3").focus();
+            });
+
+
+
+            //결과버튼 출력
+            $("#btnresult").click(function(){
+
+                var s="";
+
+                s="이름: "+$("#name").val()+"<br>";
+                s+="핸드폰: "+$("#hp1 option:selected").text()+"-"+
+                     $("#hp2").val()+"-"+$("#hp3").val()+"<br>";
+
+                var fcol=$("input[name='fcolor']:checked").val();
+              // s+="글자색: "+fcol+"<br>";
+
+              //자격증
+              var lic="";
+                $("input[name='lic']:checked").each(function(i,ele){
+                    lic+=$(this).val()+"&nbsp;&nbsp;";
+                });
+
+                s+="자격증: "+(lic==""?"없음":lic);
+                $("#result").html(s).css("color",fcol);
+                
+            });
+        })
+    </script>
+</head>
+<body>
+    <div style="margin: 20px 30px;">
+    <b>폼태그</b>
+    <table class="table table-bordered" style="width: 500px;">
+        <caption align="top"><b>개인정보</b></caption>
+        <tr>
+           <th width="100">이름</th>
+           <td>
+            <input type="text" id="name" style="width: 100px;">
+           </td>
+        </tr>
+
+        <tr>
+            <th>핸드폰</th>
+            <td>
+                  <select id="hp1">
+                    <option>010</option>
+                    <option>011</option>
+                    <option>019</option>
+                    <option>017</option>
+                  </select>
+                  <b>-</b>
+                  <input type="text" id="hp2" maxlength="4" style="width: 100px;"> <b>-</b>
+                  <input type="text" id="hp3" maxlength="4"style="width: 100px;">
+            </td>
+
+        </tr>
+
+        <tr>
+            <th>글자색</th>
+            <td>
+                <input type="radio" name="fcolor" value="blue">파랑색
+                <input type="radio" name="fcolor" value="green">그린색
+                <input type="radio" name="fcolor" value="magenta">핫핑크
+                <input type="radio" name="fcolor" value="orange">오렌지
+            </td>
+        </tr>
+
+        <tr>
+            <th>자격증</th>
+            <td>
+                <input type="checkbox" name="lic" value="운전면허">운전면허
+                <input type="checkbox" name="lic" value="정보처리기사">정보처리기사
+                <input type="checkbox" name="lic" value="sqld">sqld
+                <input type="checkbox" name="lic" value="컴활1급">컴활1급
+            </td>
+        </tr>
+
+        <tr>
+              <td colspan="2" align="center">
+        <button type="button" class="btn btn-info" id="btnresult">선택한 개인정보 출력</button>
+              </td>
+            </tr>
+
+    </table>
+
+    <div id="result"></div></div>
+</body>
+</html>
