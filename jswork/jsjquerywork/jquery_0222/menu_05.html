@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        .pink{color: pink;}
+        .green{color: green;}
+        .orange{color: orange;}
+
+        div.content>h3{
+            cursor: pointer;
+            font-family: 'Dongle';
+            font-size: 30pt;
+        }
+
+        div.answer>h5{text-indent: 30px;}
+    </style>
+    <script>
+        $(function(){
+            //댓글 숨기기
+            $("div.answer").hide();
+
+            //이벤트 문제
+            //내용클릭시 그내용에 대한 댓글만 보이고 나머지글에대한 댓글은 안보이게 처리하세요
+            $("div.content>h3").click(function(){
+                //$(this).next().show('slow');
+                $(this).siblings().show('slow');
+
+                //클릭한 곳의 부모의 형제들에서 answer찾아서 숨기기
+               $(this).parent().siblings().find("div.answer").hide('slow');
+
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div class="content pink">
+        <h3>작성자글 1번</h3>
+        <div class="answer">
+            <h5>1번글에 대한 댓글1</h5>
+            <h5>1번글에 대한 댓글2</h5>
+            <h5>1번글에 대한 댓글3</h5>
+        </div>
+    </div>
+
+    <div class="content green">
+        <h3>작성자글 2번</h3>
+        <div class="answer">
+            <h5>2번글에 대한 댓글1</h5>
+            <h5>2번글에 대한 댓글2</h5>
+            <h5>2번글에 대한 댓글3</h5>
+        </div>
+    </div>
+
+    <div class="content orange">
+        <h3>작성자글 3번</h3>
+        <div class="answer">
+            <h5>3번글에 대한 댓글1</h5>
+            <h5>3번글에 대한 댓글2</h5>
+            <h5>3번글에 대한 댓글3</h5>
+        </div>
+    </div>
+</body>
+</html>

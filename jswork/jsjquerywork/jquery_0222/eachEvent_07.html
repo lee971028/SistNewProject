@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        img.sm{
+            border: 5px groove orange;
+            border-radius: 50px;
+            padding: 10px;
+            cursor: pointer;
+            margin-left: 50px;
+        }
+
+        .large{
+            width: 400px;
+            height: 500px;
+            position: absolute;
+            left: 300px;
+            top: 250px;
+            border: 10px inset gold;
+            border-radius: 30px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="show"></div>
+    <img src="" class="large">
+
+    <script>
+        var imgInfo=[{name:"../image/Food/1.jpg",width:"120",title:"에그샌드위치"},
+        {name:"../image/Food/4.jpg",width:"130",title:"찹스테이크"},
+        {name:"../image/Food/5.jpg",width:"140",title:"에그그라탕"},
+        {name:"../image/Food/8.jpg",width:"120",title:"클럽샌드위치"},
+        {name:"../image/Food/11.jpg",width:"125",title:"망고빙수"}];
+
+        //show에 배열의 이미지들 넣기
+        var s="";
+        $.each(imgInfo,function(i,elt){
+            s+="<img class='sm' src='"+elt.name+"' width='"+elt.width+"' title='"+elt.title+"'>";
+        });
+        $("#show").html(s);
+
+
+
+        //큰이미지에 이미지중 첫번째가 나오게 한다
+        $("img.large").attr("src",$("img.sm:eq(0)").attr("src"));
+
+        //작은이미지에 마우스를 올리면 45도 회전하고 벗어나면 다시 원래대로
+        $("img.sm").hover(function(){
+            $(this).css("transform","rotate(45deg)");
+        },function(){
+            $(this).css("transform","rotate(0deg)");
+        })
+
+
+        //작은이미지를 클릭하면 해당이미지가 큰이미지에 나오도록....
+        $("img.sm").click(function(){
+            $("img.large").attr("src",$(this).attr("src"));
+        })
+
+    </script>
+</body>
+</html>

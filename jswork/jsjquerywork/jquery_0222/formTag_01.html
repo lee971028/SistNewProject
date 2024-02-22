@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        #result{
+            font-size: 2em;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        $(function(){
+
+
+            $("#btn1").click(function(){
+                family=$("#selfont option:selected").text();
+                fcolor=$("input[name='fcol']:checked").val();
+
+                $("#result").css({
+                    "color":fcolor,
+                    "font-family":family
+                });
+
+
+                 //이미지가져오기
+                 myimg="";
+                 $("input[name='minions']:checked").each(function(i,ele){
+                    myimg+="<img src='../image/jquery_img/"+$(this).val()+".png'>";
+                 })
+
+                 $("div.myminions").html(myimg);
+
+
+            });
+
+           
+        })
+    </script>
+</head>
+<body>
+    <h2>폼태그 복습</h2>
+    <div style="margin: 50px 50px;">
+        <h5>글꼴</h5>
+        <select id="selfont">
+            <option>Dongle</option>
+            <option>Gaegu</option>
+            <option>Nanum Pen Script</option>
+            
+        </select>
+        <h5>글자색</h5>
+        <input type="radio" name="fcol" value="#7b68ee">보라색
+        <input type="radio" name="fcol" value="#40e0d0">하늘색
+        <input type="radio" name="fcol" value="#ee82ee">핑크색
+        <input type="radio" name="fcol" value="#556b2f">카키색
+        
+
+        <h5>체크된 이미지 모두 출력</h5>
+        <input type="checkbox" name="minions" value="01">미니언즈1
+        <input type="checkbox" name="minions" value="02">미니언즈2
+        <input type="checkbox" name="minions" value="03">미니언즈3
+        <input type="checkbox" name="minions" value="04">미니언즈4
+
+        <br><br>
+        <button type="button" class="btn btn-info" id="btn1">선택값 모두 출력</button>
+    </div>
+
+    <div id="result" style="margin: 50px 50px;">
+        오늘 예쁜눈 펑펑!!
+        <div class="myminions">
+           
+        </div>
+    </div>
+</body>
+</html>

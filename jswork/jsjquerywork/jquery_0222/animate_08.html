@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        #hana{
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <img src="../image/jquery_img/c4.png" id="img1" width="100">
+    <hr>
+    <div id="hana"></div>
+
+    <script>
+        //선택자.animate(스타일,지속시간,시간당속도함수,콜백)
+        //스타일:필수 css스타일속성
+        //지속시간: 이펙트효과가 지속될시간
+        //시간당속도함수: swing(시작 끝만 느리고 중간은 빨라),linear(일정속도)
+        //콜백: 이펙트 효과의 동작이 완료후 실행할 함수를 정의
+        $("#img1").animate({width:'200px',opacity:'0.5'},5000); //slow,fast,3000
+
+       $("#img1").animate({width:'100px',opacity:'1'},'slow','linear',function(){
+          //alert("끝났어요~~");
+          $(this).after("<h3>THE END!!!</h3>");
+       });
+
+       $("#hana").animate({"left":"+=60"},2000).animate({"borderWidth":"10px"},2000).animate({"width":"120px"},2000).animate({height:"120px"});
+    </script>
+</body>
+</html>
