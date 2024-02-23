@@ -6,9 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Document</title>
 <style>
     button{
-        width: 130px;
+        width: 150px;
         height: 40px;
         text-align: center;
         line-height: 40px;
@@ -23,7 +24,7 @@
 
     div{
         position: absolute;
-        width: 300px;
+        width: 400px;
         height: 300px;
         font-size: 20px;
         font-family: 'Nanum Pen Script';
@@ -36,14 +37,21 @@
     }
 
     #two{
-        left: 700px;
+        left: 500px;
         top: 100px;
         border: 0px solid gray;
     }
 
     #three{
-        left: 1200px;
+        left: 1000px;
         top: 100px;
+        border: 0px solid gray;
+    }
+
+
+    #four{
+        left: 1200px;
+        top:100px;
         border: 0px solid gray;
     }
 
@@ -59,13 +67,104 @@
         text-align: center;
         border: 3px solid gold;
    }
+
+   #three h3:hover{
+    cursor: pointer;
+    background-color: bisque;
+   }
 </style>
-    <title>Document</title>
+    <script>
+        $(function(){
+
+            var theater="",movie="",time="",inwon="";
+
+            //#div one 에 버튼
+            var b1="<button type='button' id='btn1' class='btnb'>영화예매</button>";
+            $("#one").append(b1);
+
+            //버튼1 이벤트
+            $("#btn1").click(function(){
+
+                var b2="<button type='button' id='btn2' class='btna'>극장선택</button>";
+                b2+="&nbsp;<button type='button' id='btn3' class='btnb'>영화선택</button>";
+                $("#two").html(b2);
+            });
+
+            //버튼2이벤트는 나중에 동적생성이므로 on이벤트
+            $(document).on("click","#btn2",function(){
+
+                var s="";
+
+                s+="<h3 class='theater'>CGV 강남점</h3>";
+                s+="<h3 class='theater'>CGV 강북점</h3>";
+                s+="<h3 class='theater'>MEGABOX 코엑스점</h3>";
+                s+="<h3 class='theater'>MEGABOX 청담점</h3>";
+                s+="<h3 class='theater'>롯데시네마 용인점</h3>";
+
+                $("#three").html(s);
+            })
+
+            //버튼3 이벤트
+            $(document).on("click","#btn3",function(){
+
+                var s="";
+
+                s+="<h3 class='movie'>파묘</h3>";
+                s+="<h3 class='movie'>듄:파트2</h3>";
+                s+="<h3 class='movie'>귀멸의 칼날</h3>";
+                s+="<h3 class='movie'>시민 덕희</h3>";
+                s+="<h3 class='movie'>윙카</h3>";
+                s+="<h3 class='movie'>해피 디 데이</h3>";
+
+                $("#three").html(s);
+            })
+
+            //영화관 영화제목 클릭시 이벤트
+            $(document).on("click","#three h3",function(){
+
+                //클릭한 h3에서 class속성을 얻는다
+               var movie_select =$(this).attr("class");
+
+               if(movie_select=='theater')
+                    theater= "극장명: "+$(this).text();
+               else{
+
+
+                var times=["09:00","12:30","14:45","18:20","21:30"];
+                       
+                     var t="";
+                    $.each(times,function(i,ele){
+
+                        t+="<input type='radio' name='time' value='"+times[i]+"'>"+times[i]+"<br>";
+                    })
+
+                    movie="영화제목: "+$(this).text();
+
+                    t+="<input type='number' min='1' max='5' value='0' id='inwon'>";
+
+                    $("#four").html(t);
+
+               }
+                    
+               
+               
+               
+               
+                       
+
+
+                  $("#movie_result").html(theater+"<br>"+movie);  
+
+            })
+
+        })
+    </script>
 </head>
 <body>
     <div id="one"></div>
     <div id="two"></div>
     <div id="three"></div>
+    <div id="four"></div>
     <div id="movie_result"></div>
 </body>
 </html>
