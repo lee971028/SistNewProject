@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <p >클래스 바인딩</p>
+        <p :style="styleA">스타일 바인딩</p>
+
+
+    </div>
+    <script>
+        const app=Vue.createApp({
+            data() {
+                return {
+                    message:'우리오늘 뷰 시작',
+                    classA:'container',
+                    styleA:'color:blue',
+
+                }
+            },
+        })
+
+
+        app.mount('#app')
+    </script>
+    <style>
+        h1{
+            color:blue
+        }
+    </style>
+</body>
+</html>

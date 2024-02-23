@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" id="add">+</button>
+
+    <script>
+        /*  기존의 이벤트 방식 :원래있던 버튼은 이벤트가 되지만 이벤트로 발생한 버튼에는
+        이벤트가 안 먹힌다
+
+        $("#add").click(function(){
+            $("body").append("<button id='add'>+</button>");
+        })*/
+
+        //on메서드 (동적 메서드): 처음부터 존재하는 요소나 미래에 이벤트로 생기게 될요소에
+        //모두 이벤트 가능
+
+        //$(document).on('click',지정선택자,function)
+        /*$(document).on("click","button",function(){
+            $("body").append("<button>+</button>");
+        })*/
+
+        /*$(document).on("click","button[id='add']",function(){
+            $("body").append("<button id='add'>+</button>");
+        })*/$
+        $(document).on("click","#add",function(){
+            $("body").append("<button id='add'>+</button>");
+        })
+    </script>
+
+    <ul>
+        <li>Java</li>
+        <li>Jsp</li>
+        <li>Oracle</li>
+        <li>Spring</li>
+    </ul>
+
+    <script>
+
+        //정적클릭이벤트로 li 지우기
+       /* $("ul").children().click(function(){
+            $(this).remove();
+        }); //삭제 잘됨*/
+
+        //이벤트로 리스트 하나 추가_jquery
+        $("ul").append('<li>JQuery</li>');//이벤트로 발생된 리스트이므로 삭제안됨
+
+        //동적이벤트
+        $(document).on("click","li",function(){
+            $(this).remove();
+        });
+
+    </script>
+
+</body>
+</html>
