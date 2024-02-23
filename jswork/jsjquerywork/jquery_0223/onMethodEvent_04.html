@@ -147,15 +147,32 @@
                }
                     
                
-               
-               
-               
-                       
-
-
                   $("#movie_result").html(theater+"<br>"+movie);  
 
+            });
+
+
+
+
+            //라디오버튼 선택시 이벤트
+            $(document).on("click","input[name='time']",function(){
+
+                console.log($(this).val());
+
+                time="상영시간: "+$(this).val();
+
+                $("#movie_result").html(theater+"<br>"+movie+"<br>"+time);  
+
+
             })
+
+            //인원 변경시 이벤트
+            $(document).on("change","#inwon",function(){
+                inwon="인원수: "+$(this).val();
+
+                $("#movie_result").html(theater+"<br>"+movie+"<br>"+time+"<br>"+inwon);  
+            });
+
 
         })
     </script>

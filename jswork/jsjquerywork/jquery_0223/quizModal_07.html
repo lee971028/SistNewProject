@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+
+        })
+    </script>
+</head>
+<body>
+    <div style="width: 500px;">
+    <div class="alert alert-danger" >Q&A 게시판</div>
+    <div class="d-inline-flex">
+        <button type="button" class="btn btn-info"><i class="bi bi-pencil-square"></i>글쓰기</button>
+        <input type="text" class="form-control" style="width: 150px; margin-left: 100px;">
+        <button type="button" class="btn btn-danger"><i class="bi bi-search"></i></button>
+    </div>
+
+    <table class="table table-bordered" style="width: 500px; margin-top: 50px;">
+         <tr class="table-success">
+            <th width="60">번호</th>
+            <th width="260">제목</th>
+            <th width="100">작성자</th>
+            <th width="60">조회</th>
+         </tr>
+         <tr>
+            <td>10</td>
+            <td>
+                <b class="subject" title="../image/만화이미지/04.png"  writer="최유리">정처기 스터디 모임!!!</b>
+            </td>
+            <td>최유리</td>
+            <td>6</td>
+         </tr>
+         <tr>
+            <td>11</td>
+            <td>
+                <b class="subject" title="../image/Food/2.jpg"  writer="김유리">맛집투어모임!!!</b>
+            </td>
+            <td>김유리</td>
+            <td>6</td>
+         </tr>
+         <tr>
+            <td>12</td>
+            <td>
+                <b class="subject" title="../image/Food/6.jpg"  writer="홍연지">오늘 점심메뉴!!!</b>
+            </td>
+            <td>홍연지</td>
+            <td>6</td>
+         </tr>
+         <tr>
+            <td>15</td>
+            <td>
+                <b class="subject" title="../image/logoImg/acc03.png"  writer="이민희">오늘모임드레스코드!!!</b>
+            </td>
+            <td>이민희</td>
+            <td>6</td>
+         </tr>
+    </table>
+
+    
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">제목</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p class="photo-title">작성자</p>
+          <img src="" class="photo" style="max-width: 200px;">
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+
+   
+  
+ 
+
+
+
+</body>
+</html>
