@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0 ;
+            padding: 0;
+            background: url("../image/jquery_img/bg.png");
+            background-size: cover;
+            height: 100%;
+        }
+
+        li{list-style: none;}
+
+        .sunban_area{
+            width: 800px;
+            margin: 50px auto;
+            margin-top: 100px;
+        }
+
+        .game_control{
+            width: 300px;
+            height: 450px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+        }
+
+        .sunban{
+
+            height: 150px;
+            margin-bottom: 50px;
+            width: 800px;
+            background: url("../image/jquery_img/sunban.png") no-repeat center bottom;
+        }
+
+        .sunban li{
+            float: left;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            
+        }
+
+        .gun{
+            width: 300px;
+            height: 250px;
+            background: url("../image/jquery_img/gun.png") no-repeat ;
+            cursor: pointer;
+            text-indent: -99px;
+        }
+
+        .gun:active{
+            background-position: bottom;
+        }
+
+        #game_msg{
+            font-family: 'Nanum Pen Script';
+            position: absolute;
+            left: 700px;
+            top: 600px;
+            width: 600px;
+            height: 100px;
+            border: 10px solid pink;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 20px;
+            font-size: 30px;
+
+        }
+
+    </style>
+
+    <script>
+        $(function(){
+
+              var gun_sound=new Audio("../sound/fire.mp3"); //mp4  wav 확장자
+
+             
+              //총이미지 클릭시 (소리_play())
+              $(".gun").click(function(){
+
+                    gun_sound.play();
+
+                    //0~11난수발생
+                    var n=parseInt(Math.random()*12);
+
+                    //해당인덱스 미니언즈가 없을경우 " 2번째 미니언즈는 이미 처리중"
+              //만약 아닐경우 "2번째 미니언즈을 맞췄네요"  메세지출력후 hide()
+              //$(".sunban img").eq(1).is(":hidden")==>true/false
+
+                 if($(".sunban img").eq(n).is("hidden")){
+                    $("#game_msg").html((n+1)+"번째 미니언즈는 이미 처리되었습니다");
+                 }else{
+                    $("#game_msg").html((n+1)+"번째 미니언즈를 맞추셨습니다");
+                    $(".sunban img").eq(n).hide();
+                 }
+
+                  //12개 모두 맞추면 메세지창에 YOU WIN!!!
+                  var cnt=0;
+                  $(".sunban img").each(function(i,ele){
+                    if($(this).is(":hidden"))
+                    cnt++;
+                  });
+
+
+                   //12개 모두 맞추면 메세지창에 YOU WIN!!!
+                   if(cnt==12){
+                    $("#game_msg").html("<b>YOU WIN!!!</b>");
+                   }
+
+
+              });
+
+              //지폐클릭시 해당지폐 사라지게 하면서
+              //12개의 미니온즈 다시보이고 메세지 창 지워지기
+
+              $(".money img").click(function(){
+                  $(this).hide();
+                  $(".sunban img").show();
+                  $("#game_msg").empty();
+
+              })
+              
+
+        });
+    </script>
+</head>
+<body>
+    <div class="game_control">
+        <div class="gun">총</div>
+        <ul class="money">
+            <li><img src="../image/jquery_img/money.png"></li>
+            <li><img src="../image/jquery_img/money.png"></li>
+            <li><img src="../image/jquery_img/money.png"></li>
+        </ul>
+    </div>
+
+    <div class="sunban_area">
+        <ul class="sunban">
+            <li><img src="../image/jquery_img/01.png"></li>
+            <li><img src="../image/jquery_img/02.png"></li>
+            <li><img src="../image/jquery_img/03.png"></li>
+            <li><img src="../image/jquery_img/04.png"></li>
+            <li><img src="../image/jquery_img/05.png"></li>
+            <li><img src="../image/jquery_img/06.png"></li>
+        </ul>
+
+        <ul class="sunban">
+            <li><img src="../image/jquery_img/07.png"></li>
+            <li><img src="../image/jquery_img/08.png"></li>
+            <li><img src="../image/jquery_img/09.png"></li>
+            <li><img src="../image/jquery_img/10.png"></li>
+            <li><img src="../image/jquery_img/11.png"></li>
+            <li><img src="../image/jquery_img/12.png"></li>
+        </ul>
+    </div>
+
+    <div id="game_msg">
+        
+    </div>
+</body>
+</html>

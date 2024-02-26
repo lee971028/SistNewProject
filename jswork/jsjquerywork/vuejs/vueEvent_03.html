@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="alert alert-success"><h1>{{num}}</h1></div>
+        <br><br>
+        <button type="button" class="btn btn-info" v-on:click="numberIncre">증가</button>
+        <button type="button" class="btn btn-danger" @click="numberDecre">감소</button>
+    </div>
+    <script>
+        const app=Vue.createApp({
+
+            data(){
+                return{
+
+                    num:0
+                }
+            },
+            methods:{
+                numberIncre(){
+                    this.num++;
+                },
+                numberDecre(){
+                    this.num--;
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+    <style>
+
+    </style>
+</body>
+</html>
