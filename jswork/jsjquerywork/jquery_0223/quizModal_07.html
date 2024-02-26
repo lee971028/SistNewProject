@@ -12,6 +12,21 @@
     <script>
         $(function(){
 
+          $(".subject").click(function(){
+             //속성가져오기
+              var photo=$(this).attr("title");
+              var writer=$(this).attr("writer");
+              var title=$(this).text();
+
+            //속성적용
+            $(".photo").attr("src",photo);
+            $(".modal-title").html("<b>"+title+"</b>");
+            $(".photo-title").text(writer);
+
+            $("#myModal").modal("show");
+              
+               
+          });
         })
     </script>
 </head>

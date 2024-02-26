@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <title>Document</title>
+   <style>
+        li{list-style: none;}
+
+        body{background-color: #fff;}
+
+        div.wall{
+           
+            width: 800px;
+            height: 550px;
+            background-color: #999;
+            border-radius: 10px;
+            border: 5px solid #333;
+            
+        }
+
+        h1.title{
+            font-size: 35px;
+            position: absolute;
+            right:1150px;
+            top: 80px;
+            width: 150px;
+            font-family: 'Dongle';
+        }
+
+        div.wall ul.list li{
+            float: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            width: 70px;
+           height: 70px;
+           border: 5px solid #333;
+           border-radius: 10px;
+           cursor: pointer;
+        }
+
+        div.wall ul.list li img{width: 100%;}
+
+        /* 제이커리에서 사용할 클래스 */
+        div.wall ul.list li.active{
+            border-color: tomato;
+        }
+   </style>
+
+   <script>
+    $(function(){
+
+        //벽지 이미지 클릭하면
+        $(".list li img").click(function(){
+
+            //현재클릭한 이미지 의 부모 li에  active클래스 추가
+            $(this).parent().addClass("active");
+
+            //부모태그의 형제에 들어있는 active 제거
+            $(this).parent().siblings().removeClass("active");
+
+
+            //클릭한 이미지 title속성 얻기
+            var title=$(this).attr("title");
+
+            //h1.title에 넣기
+            $("h1.title").html(title);
+
+            //클릭한 이미지 src얻기
+           var imgSrc=$(this).attr("src");
+
+           //얻은 mgSrc를 div.wall에 배경이미지
+           $("div.wall").css("background-image","url('"+imgSrc+"')");
+
+        })
+
+        
+
+        
+
+        //액자에 제목속성
+
+        //클릭한 이미지속성얻어서 벽의 배경에 넣는다
+    })
+   </script>
+</head>
+<body>
+    <div class="wall">
+        <h1 class="title">Select Design</h1>
+        <img src="../image/jquery_img/cover2.png">
+        <ul class="list">
+            <li><img src="../image/jquery_img/b01.png" title="Pear"></li>
+            <li><img src="../image/jquery_img/b02.png" title="Checker"></li>
+            <li><img src="../image/jquery_img/b03.png" title="Bamboo"></li>
+            <li><img src="../image/jquery_img/b04.png" title="Pencil"></li>
+            <li><img src="../image/jquery_img/b05.png" title="Leaf"></li>
+            <li><img src="../image/jquery_img/b06.png" title="Forest"></li>
+        </ul>
+    </div>
+</body>
+</html>
