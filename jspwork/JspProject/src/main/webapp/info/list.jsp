@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="info.model.InfoDto"%>
 <%@page import="java.util.Vector"%>
 <%@page import="info.model.InfoDao"%>
@@ -15,8 +16,10 @@
 <%
 InfoDao dao=new InfoDao();
 Vector<InfoDto> list=dao.getAllDatas();
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy년 MM월 dd일");
 %>
 <body>
+<div style="margin: 50px 100px;">
 <button type="button" class="btn btn-info"
 onclick="location.href='addform.jsp'">입력폼</button>
 
@@ -41,15 +44,17 @@ onclick="location.href='addform.jsp'">입력폼</button>
     	   <td align="center"><%=i+1 %></td>
     	   <td><%=dto.getName() %></td>
     	   <td><%=dto.getAddr() %></td>
-    	   <td><%=dto.getSdate() %></td>
+    	   <td><%=sdf.format(dto.getSdate()) %></td>
     	   <td>
-    	      <button type="button" class="btn btn-info btn-sm" onclick="location.href=''">수정</button>
-    	      <button type="button" class="btn btn-danger btn-sm" onclick="location.href=''">삭제</button>
+    	      <button type="button" class="btn btn-info btn-sm" 
+    	      onclick="location.href='updateform.jsp?num=<%=dto.getNum()%>'">수정</button>
+    	      <button type="button" class="btn btn-danger btn-sm" 
+    	      onclick="location.href='infodelete.jsp?num=<%=dto.getNum()%>'">삭제</button>
     	   </td>
     	 </tr>
      <%}
    %>
 </table>
-
+</div>
 </body>
 </html>
