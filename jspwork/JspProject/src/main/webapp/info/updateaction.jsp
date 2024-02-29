@@ -1,3 +1,5 @@
+<%@page import="info.model.InfoDao"%>
+<%@page import="info.model.InfoDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +12,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+  //한글엔코딩
+  request.setCharacterEncoding("utf-8");
 
+  //데이타 읽어서 dto담기
+  String num=request.getParameter("num");
+  String name=request.getParameter("name");
+  String addr=request.getParameter("addr");
+  
+  	InfoDto dto=new InfoDto();
+	  dto.setNum(num);
+	  dto.setName(name);
+	  dto.setAddr(addr);
+	  
+	  //db에저장
+	  InfoDao dao=new InfoDao();
+	  dao.infoUpdate(dto);
+	  
+	  //목록
+	  response.sendRedirect("list.jsp");
+  
+  
+%>
 </body>
 </html>

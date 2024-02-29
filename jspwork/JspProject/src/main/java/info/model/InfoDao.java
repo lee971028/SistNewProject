@@ -132,4 +132,33 @@ public class InfoDao {
 		return dto;
 	}
 	
+	//수정..이름,주소수정 가능하게 
+	public void infoUpdate(InfoDto dto)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update info set name=?,addr=? where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getAddr());
+			pstmt.setString(3, dto.getNum());
+			
+			pstmt.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
+	
+	
 }
