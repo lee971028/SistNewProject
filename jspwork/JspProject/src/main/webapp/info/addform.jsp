@@ -10,6 +10,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div style="margin: 50px 100px;">
+    <form action="addaction.jsp" method="post">
+        <table class="table table-bordered" style="width: 350px;">
+           <tr>
+             <th class="table-success" width="80">이름</th>
+             <td>
+               <input type="text" name="name" placeholder="이름"
+               required="required" class="form-control" style="width: 120px;">
+             </td>
+           </tr>
+           
+           <tr>
+             <th class="table-success" width="80">주소</th>
+             <td>
+               <input type="text" name="addr" placeholder="주소"
+               required="required" class="form-control" style="width: 250px;">
+             </td>
+           </tr>
+           <tr>
+             <td colspan="2" align="center">
+               <input type="submit" value="전송" class="btn btn-outline-success">
+               <input type="button" value="목록" class="btn btn-outline-warning"
+               onclick="location.href='list.jsp'">
+             </td>
+           </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
