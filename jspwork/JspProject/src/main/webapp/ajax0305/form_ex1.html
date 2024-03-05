@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<h3>폼태그에 데이타 입력타 입력후 jsp로 보내기</h3>
+이름: <input type="text" id="name" size="10"><br>
+핸드폰: <input type="text" id="hp" size="12"><br>
+<button type="button" id="btn1">ajax로 서버에 보내기#1</button>
+<button type="button" id="btn2">ajax로 서버에 보내기#2</button>
+<hr>
+<div id="show"></div>
+
+<script type="text/javascript">
+    $("#btn1").click(function(){
+    	
+    	//입력한 값 읽기
+    	var name=$("#name").val();
+    	var hp=$("#hp").val();
+    	
+    	var data="name="+name+"&hp="+hp; //방법1
+    	//alert(data);
+    	
+    	//ajax함수를 통해서 백앤드로 데이타를 보낸다
+    	$.ajax({
+    		type:"get",
+    		url:"read1_ex1.jsp",
+    		dataType:"html",  /*백앤드에서 아무것도 리턴안할경우 html*/
+    		//data:data,
+    		data:{"name":name,"hp":hp}, //방법2
+    		success:function(){
+    			
+    			//alert("success");
+    			$("#show").html("<h3 class='alert alert-info'>"+data+"</h3>")
+    		},
+    		statusCode:{
+    			404:function(){
+    				alert("파일을 찾을수 없어요");
+    			},
+    			500:function(){
+    				alert("서버오류..코드 다시한번 볼것")
+    			}
+    		}
+    		
+    		
+    	});
+    });
+
+</script>
+
+
+
+</body>
+</html>
