@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+   <form id="frm">
+      <table class="table table-bordered" style="width: 400px;">
+        <tr>
+          <th class="table-info">상품코드</th>
+          <td>
+            <input type="text" name="scode" id="scode" class="form-control" style="width: 100px;">
+          </td>
+        </tr>
+        
+        <tr>
+          <th class="table-info">상품명</th>
+          <td>
+            <input type="text" name="sname" id="sname" class="form-control" style="width: 120px;">
+          </td>
+        </tr>
+        
+        <tr>
+          <th class="table-info">가격</th>
+          <td>
+            <input type="text" name="price" id="price" class="form-control" style="width: 120px;">
+          </td>
+        </tr>
+        
+        <tr>
+          <th class="table-info">색상</th>
+          <td>
+             <input type="radio" name="color" value="yellow">노랑
+             <input type="radio" name="color" value="magenta">핫핑크
+             <input type="radio" name="color" value="gray">회색
+             <input type="radio" name="color" value="green" checked="checked">초록
+          </td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" align="center">
+            <button type="button" id="btn" class="btn btn-success">데이타 백앤드로 보내기</button>
+          </td>
+        </tr>
+      </table>
+   </form>
+   
+   <br>
+   <div id="show" class="alert alert-success"></div>
+   
+   
+   <script type="text/javascript">
+      $("#btn").click(function(){
+    	  
+    	  //폼태그의 값들을 통째로 읽어온다
+    	  var data=$("#frm").serialize();
+    	  //alert(data);
+    	  
+    	  $.ajax({
+    		  type:"get",
+    		  url:"read_ex2.jsp",
+    		  dataType:"json",
+    		  data:data,
+    		  success:function(data){
+    			  
+    			  var s="코드: "+data.code+"<br>";
+    			  s+="상품명: "+data.name+"<br>";
+    			  s+="가격: "+data.price+"<br>";
+    			  s+="색상: "+data.color+"<br>";
+    			  
+    			  $("#show").html(s);
+    		  }
+    	  })
+      });
+   </script>
+   
+   
+</body>
+</html>

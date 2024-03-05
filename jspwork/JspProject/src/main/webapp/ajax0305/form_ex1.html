@@ -50,6 +50,25 @@
     		
     	});
     });
+    
+    
+    $("#btn2").click(function(){
+    	
+    	var name=$("#name").val();
+    	var hp=$("#hp").val();
+    	
+    	$.ajax({
+    		type:"get",
+    		url:"read2_ex1.jsp",
+    		dataType:"xml",
+    		data:{"name":name,"hp":hp},
+    		success:function(res){
+    			
+    			var s="<h2>"+$(res).find("name").text()+" 님 데이타를 DB 에 추가했어요</h2>";
+    			$("#show").html(s);
+    		}
+    	})
+    });
 
 </script>
 
