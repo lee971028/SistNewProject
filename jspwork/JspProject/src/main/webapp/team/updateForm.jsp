@@ -20,7 +20,7 @@
 <div style="margin: 30px 50px;">
   <form action="updateAction.jsp" method="post">
   
-  <input type="text" name="num" value="<%=num%>">
+  <input type="hidden" name="num" value="<%=num%>">
      <table class="table table-bordered" style="width: 300px;">
          <caption align="top"><b>팀회원 정보 수정</b></caption>
          <tr>

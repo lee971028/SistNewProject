@@ -149,7 +149,32 @@ public class TeamDao {
 	}
 	
 	//수정
-	
+	public void updateTeam(TeamDto dto)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update team set name=?,driver=?,addr=? where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			//바인딩4개
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getDriver());
+			pstmt.setString(3, dto.getAddr());
+			pstmt.setString(4, dto.getNum());
+			
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
 	
 	
 	
