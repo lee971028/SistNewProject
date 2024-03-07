@@ -44,16 +44,19 @@
         		 %>
         		 <tr>
         		   <td align="center"><%=i+1 %></td>
-        		   <td><%=dto.getName() %></td>
-        		   <td><%=dto.getAge() %></td>
-        		   <td><%=dto.getBirthday() %></td>
-        		   <td><button type="button" class="btn btn-info"
-        		   onclick="location.href=''">자세히보기</button></td>
+        		   <td align="center"><%=dto.getName() %></td>
+        		   <td align="center"><%=dto.getAge() %></td>
+        		   <td align="center"><%=dto.getBirthday() %></td>
+        		   <td align="center"><button type="button" class="btn btn-info"
+        		   onclick="location.href='detailPage.jsp?num=<%=dto.getNum()%>'">자세히보기</button></td>
         		 </tr>
         	 <%}
          }
        %>
     </table>
+    
+    <button type="button" class="btn btn-info" style="width: 100px;"
+    onclick="location.href='addForm.jsp'">추가폼</button>
  </div>
 </body>
 </html>
