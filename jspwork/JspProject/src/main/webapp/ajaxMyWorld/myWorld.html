@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+  div.hello{
+    position: absolute;
+    border: 1px solid gray;
+    font-family: 'Nanum Pen Script';
+    font-size: 1.5em;
+  }
+
+  div.button{
+     left: 150px;
+     top: 30px;
+     width: 400px;
+     height: 100px;
+     line-height: 100px;
+     text-align: center;
+     
+  }
+  
+  div.addform{
+    left: 100px;
+    top: 150px;
+    width: 500px;
+    height: 450px;
+    padding: 20px 20px;
+  }
+  
+  img.avata{
+    cursor: pointer;
+  }
+  
+  img.select{
+     border: 2px solid red;
+  }
+</style>
+
+<script type="text/javascript">
+  $(function(){
+	  
+	  //처음에 추가폼 없는상태로
+	  $("div.addform").hide();
+	  
+	  //버튼누르면 추가폼 나오고 사라지게
+	  $("#btnadd").click(function(){
+		  $("div.addform").slideToggle();
+	  });
+	  
+	  //아바타 이미지에 기본하나 select클래스 추가
+	  $("img.avata").eq(2).addClass("select");
+	  
+	  //2번아바타의 src값을 얻어서 input태그에 추가하기
+	  $("#avata").val($("img.avata").eq(2).attr("src"));
+	  
+	  //아바타 선택시 값변경하기
+	  $("img.avata").click(function(){
+		  $(this).siblings().removeClass("select");
+		  $(this).addClass("select");
+		  $("#avata").val($(this).attr("src"));
+	  });
+	  
+	  //추가폼 저장
+	  $("#dbSave").click(function(){
+		  
+		   var data=$("#addfrm").serialize();
+		   //alert(data);
+		   
+		   $.ajax({
+			   type:"post",
+			   dataType:"html",
+			   url:"worldInsert.jsp",
+			   data:data,
+			   success:function(){
+				   
+				   //alert("성공!!");
+				   //입력값 초기화
+				   $("#writer").val("");
+				   $("#content").val("");
+				   //아바타초기화
+				   	$("img.avata").removeClass("select");
+				  	$("img.avata").eq(2).addClass("select");					  			 
+					$("#avata").val($("img.avata").eq(2).attr("src"));
+			   }
+		   })
+	  });
+	  
+  })
+</script>
+</head>
+<body>
+  <div class="hello button">
+    <button type="button" class="btn btn-danger"
+    id="btnadd" style="width: 120px;">방명록추가</button>
+  </div>
+  <div class="hello addform">
+     <form id="addfrm">
+        <table class="table table-bordered">
+           <caption align="top"><b>방명록추가</b></caption>
+             <tr>
+               <th>작성자</th>
+               <td>
+                 <input type="text" class="form-control input-sm"
+                 name="writer" id="writer" style="width: 120px;">
+               </td>
+               
+             </tr>
+             <tr>
+               <th>남기는말</th>
+               <td>
+                 <textarea style="width: 300px; height: 100px;"
+                 class="form-control" name="content" id="content"></textarea>
+               </td>
+             </tr>
+             <tr>
+               <th>아바타</th>
+               <td>
+                  <input type="hidden" name="avata" id="avata">
+                  <script type="text/javascript">
+                    var s="";
+                    for(var i=1;i<=10;i++){
+                    	s+="<img src='../image/avata/b"+i+".png' width='50' class='avata'>";
+                    	
+                    	if(i==5)
+                    		s+="<br>";
+                    }
+                    
+                    document.write(s);
+                  </script>
+               </td>
+             </tr>
+             
+             <tr>
+               <td colspan="2" align="center">
+                 <button type="button" class="btn btn-info"
+                 id="dbSave">DB저장하기</button>
+               </td>
+             </tr>
+        </table>
+     </form>
+  </div>
+</body>
+</html>
