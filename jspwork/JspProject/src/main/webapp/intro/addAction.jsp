@@ -10,6 +10,34 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+  request.setCharacterEncoding("utf-8");
+%>
+<jsp:useBean id="dao" class="intro.model.IntroDao"/>
+<jsp:useBean id="dto" class="intro.model.IntroDto"/>
+<jsp:setProperty property="*" name="dto"/>
 
+<%
+  String [] hobby=request.getParameterValues("hobby");
+
+  String myhobby="";
+  
+  if(hobby==null)
+	  myhobby="no";
+  else{
+	  for(int i=0;i<hobby.length;i++){
+		  myhobby+=hobby[i]+",";
+	  }
+	  
+	  myhobby=myhobby.substring(0,myhobby.length()-1);
+  }
+  
+  dto.setHobby(myhobby);
+  
+  dao.insertIntro(dto);
+  
+  response.sendRedirect("introList.jsp");
+  
+%>
 </body>
 </html>

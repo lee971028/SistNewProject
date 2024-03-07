@@ -9,6 +9,8 @@ public class IntroDto {
 	private String hometown;
 	private String hobby;
 	private String memo;
+	
+	
 	public String getNum() {
 		return num;
 	}
