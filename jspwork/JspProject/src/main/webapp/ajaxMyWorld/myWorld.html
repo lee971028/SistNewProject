@@ -7,9 +7,11 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+
+
   div.hello{
     position: absolute;
-    border: 1px solid gray;
+    border: 0px solid gray;
     font-family: 'Nanum Pen Script';
     font-size: 1.5em;
   }
@@ -39,10 +41,30 @@
   img.select{
      border: 2px solid red;
   }
+  
+  div.list{
+    left: 800px;
+    top: 100px;
+    width: 600px;
+    height: 1000px;
+    padding: 20px 20px;
+    
+  }
+  span.writer{
+     font-weight: bold;
+  }
+  
+  span.day{
+      color: #bbb;
+      float: right;
+  }
+  pre.cont{font-family: 'Nanum Pen Script';  font-size: 18px;}
 </style>
 
 <script type="text/javascript">
   $(function(){
+	  
+	  list()
 	  
 	  //처음에 추가폼 없는상태로
 	  $("div.addform").hide();
@@ -78,6 +100,8 @@
 			   data:data,
 			   success:function(){
 				   
+				   //추가 성공시 목록 다시 출력
+				   list();
 				   //alert("성공!!");
 				   //입력값 초기화
 				   $("#writer").val("");
@@ -91,6 +115,42 @@
 	  });
 	  
   })
+  
+  
+  //사용자 함수 list
+  function list()
+  {
+	  $.ajax({
+		  type:"get",
+		  dataType:"json",
+		  url:"worldList.jsp",
+		  success:function(data){
+			  
+			  //alert(data.length);
+			  var s="";
+			  
+			  if(data.length==0){
+				  s+="<h3 class='alert alert-info'>저장된 방명록이 없습니다</h3>";
+			  }else{
+				  
+				  $.each(data,function(i,elt){
+					  s+="<table class='table table-bordered'>";
+					  s+="<tr><td>";
+					  s+="<span class='writer'>작성자: "+elt.writer+"</span>";
+					  s+="<span class='day'>"+elt.writeday+"</span>";
+					  s+="<br>";
+					  s+="<pre class='cont'>"+elt.content;
+					  s+="<img src='"+elt.avata+"' align='right' width='80'>";
+					  s+="</pre>";
+					  s+="</td></tr>";
+					  s+="</table><br>";
+				  })
+			  }
+			  
+			  $("div.list").html(s);
+		  }
+	  })
+  }
 </script>
 </head>
 <body>
@@ -144,5 +204,7 @@
         </table>
      </form>
   </div>
+  
+  <div class="hello list">list</div>
 </body>
 </html>
