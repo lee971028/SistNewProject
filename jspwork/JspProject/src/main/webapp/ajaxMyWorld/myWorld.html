@@ -77,6 +77,7 @@
 	  
 	  //버튼누르면 추가폼 나오고 사라지게
 	  $("#btnadd").click(function(){
+		  $("div.updateform").hide();
 		  $("div.addform").slideToggle();
 	  });
 	  
@@ -136,6 +137,53 @@
 				 list();
 			 }
 		 });
+	  });
+	  
+	  
+	  //수정시 아바타 선택시 값변경
+	  $("img.uavata").click(function(){
+		  $(this).siblings().removeClass("select");
+		  $(this).addClass("select");
+		  $("#uavata").val($(this).attr("src"));
+	  });
+	  
+	  //목록의 수정버튼
+	  $(document).on("click","i.edit",function(){
+		  
+		  var num=$(this).attr("num");
+		  //alert(num);
+		  //폼의 unum에 num넣기
+		  $("#unum").val(num);
+		  
+		  
+		  $.ajax({
+			  type:"get",
+			  url:"worldGetData.jsp",
+			  dataType:"json",
+			  data:{"num":num},
+			  success:function(res){
+				  
+				  //수정폼 태그안에 넣어준다
+				  $("#unum").val(res.num);
+				  $("#uwriter").val(res.writer);
+				  $("#ucontent").val(res.content);
+				  $("#uavata").val(res.avata);
+				  
+				  //해당이미지에 select클래스추가
+				  $("img.uavata").each(function(i,ele){
+					  
+					  if($(this).attr("src")==res.avata)
+						  $(this).addClass("select");
+					  else
+						  $(this).removeClass("select");
+				  })
+				  
+				  //추가폼이 있으면 숨기고 수정폼을 나타낸다
+				  $("div.addform").hide();
+				  $("div.updateform").show();
+				  
+			  }
+		  })
 	  });
 	  
   })
@@ -232,7 +280,58 @@
   </div>
   
   
-  <div class="hello updateform">update</div>
+  <div class="hello updateform">
+     <form id="updatefrm">
+       <!-- hidden :num 수정폼에서 가장중요함!!!!!항상보내기 -->
+       <input type="hidden" id="unum" name="unum" value="">
+        <table class="table table-bordered">
+           <caption align="top"><b>방명록수정</b></caption>
+             <tr>
+               <th>작성자</th>
+               <td>
+                 <input type="text" class="form-control input-sm"
+                 name="uwriter" id="uwriter" style="width: 120px;">
+               </td>
+               
+             </tr>
+             <tr>
+               <th>남기는말</th>
+               <td>
+                 <textarea style="width: 300px; height: 100px;"
+                 class="form-control" name="ucontent" id="ucontent"></textarea>
+               </td>
+             </tr>
+             <tr>
+               <th>아바타</th>
+               <td>
+                  <input type="hidden" name="uavata" id="uavata">
+                  <script type="text/javascript">
+                    var s="";
+                    for(var i=1;i<=10;i++){
+                    	s+="<img src='../image/avata/b"+i+".png' width='50' class='uavata'>";
+                    	
+                    	if(i==5)
+                    		s+="<br>";
+                    }
+                    
+                    document.write(s);
+                  </script>
+               </td>
+             </tr>
+             
+             <tr>
+               <td colspan="2" align="center">
+                 <button type="button" class="btn btn-info"
+                 id="dbUpdate">DB수정하기</button>
+               </td>
+             </tr>
+        </table>
+     </form>
+  
+  
+  
+  
+  </div>
   <div class="hello list">list</div>
 </body>
 </html>
