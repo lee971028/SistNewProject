@@ -186,6 +186,25 @@
 		  })
 	  });
 	  
+	  //수정
+	  $("#dbUpdate").click(function(){
+		  
+		 var data= $("#updatefrm").serialize();
+		 //alert(data);
+		 
+		 $.ajax({
+			 type:"post",
+			 dataType:"html",
+			 url:"worldUpdate.jsp",
+			 data:data,
+			 success:function(){
+				 //수정성공시 목록 다시호출
+				 list();
+			 }
+		 })
+		 
+	  });
+	  
   })
   
   
