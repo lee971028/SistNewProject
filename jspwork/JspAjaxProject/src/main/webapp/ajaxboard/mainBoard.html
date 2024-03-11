@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-  div.list{
+  div.list,div.detail{
     position: absolute;
     left: 100px;
     top: 100px;
@@ -21,9 +21,18 @@ div.writeform{
     
 }
 
-div.list *,div.wrteform{
+div.list *,div.wrteform,div.detail *{
    font-family: 'Nanum Pen Script';
    font-size: 13pt;
+}
+
+span.detail{
+  cursor: pointer;
+}
+
+div.detail button{
+  width: 80px;
+  margin-right: 10px;
 }
 </style>
 
@@ -72,6 +81,82 @@ div.list *,div.wrteform{
 		  })
 	  });
 	  
+	  
+	  //제목클릭시 내용보기
+	  $(document).on("click","span.detail",function(){
+		  
+		  //span태그에 넣어둔 num가져오기
+		  var num=$(this).attr("num");
+		  //alert(num);
+		  
+		  $.ajax({
+			  
+			  type:"get",
+			  dataType:"json",
+			  data:{"num":num},
+			  url:"detailBoard.jsp",
+			  success:function(data){
+				  
+				 // alert(data.writer);
+				 var s="<table class='table table-bordered' style='width:500px;'>";
+				 s+="<caption align='top'><b>디테일페이지 내용보기</b></caption>";
+				 s+="<tr class='table-input'>";
+				 s+="<td><b style='font-size:2em;'>"+data.subject+"</b>";
+				 s+="&nbsp;&nbsp;&nbsp;("+data.writer+")";
+				 s+="<span style='float:right; color:gray;'>"+data.writeday+"</span></td></tr>";
+				 s+="<tr><td>";
+				 s+="<img src='"+data.avata+"' align='left' hspace='20'>";
+				 s+="<pre>"+data.content+"</pre></td></tr>";
+				 
+				 //버튼들
+				 s+="<tr><td align='right'>";
+				 s+="<button type='button' class='btn btn-success btn-sm btnlist'>목록</button>";
+				 s+="<button type='button' class='btn btn-warning btn-sm btnupdate' num='"+data.num+"'>수정</button>";
+				 s+="<button type='button' class='btn btn-danger btn-sm btndelete' num='"+data.num+"'>삭제</button>";
+				 s+="</td></tr>";
+				 s+="</table>";
+				 
+				 //출력
+				$("div.detail").html(s); 
+				 
+				 //list숨기고 detail보이게
+				 $("div.list").hide();
+				 $("div.detail").show();
+			  }
+		  });
+	  });
+	  
+	  
+	  //목록버튼누르면 상세보기 사라지고 목록 나오기
+	  $(document).on("click",".btnlist",function(){
+		  $("div.detail").hide();
+		  $("div.list").show();
+	  })
+	  
+	  
+	  //삭제버튼 누르면..삭제후 내용보기 숨기고 목록을 보이게
+	  $(document).on("click",".btndelete",function(){
+		  
+		  var num=$(this).attr("num");
+		  //alert(num);
+		  
+		  $.ajax({
+			  type:"get",
+			  dataType:"html",
+			  url:"deleteBoard.jsp",
+			  data:{"num":num},
+			  success:function(){
+				  
+				  list(); //목록 다시호출
+				  
+				  //디테일사라지게
+				  $("div.detail").hide();
+				  //목록보이게
+				  $("div.list").show();
+			  }
+		  })
+	  })
+
   });
   
   
@@ -126,6 +211,9 @@ div.list *,div.wrteform{
    <button type="button" class="btn btn-info" id="btnwrite">글쓰기</button>
    <div id="boardlist">list</div>
 </div>
+
+<div class="detail"></div>
+
 <div class="writeform" style="width: 400px;">
    <form action="#">
      <table class="table table-bordered">
