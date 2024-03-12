@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-  div.list,div.detail{
+  div.list,div.detail,div.updateform{
     position: absolute;
     left: 100px;
     top: 100px;
@@ -21,7 +21,7 @@ div.writeform{
     
 }
 
-div.list *,div.wrteform,div.detail *{
+div.list *,div.wrteform,div.detail *,div.updateform *{
    font-family: 'Nanum Pen Script';
    font-size: 13pt;
 }
@@ -43,6 +43,13 @@ div.detail button{
 	  
 	  //입력폼 처음에는 안보이게
 	  $("div.writeform").hide();
+	  
+	  
+	//수정폼 처음에는 안보이게
+	$("div.updateform").hide();
+	  
+	  
+	  
 	  //글쓰기버튼 누르면 보이게
 	  $("#btnwrite").click(function(){
 		  $("div.writeform").toggle();
@@ -155,7 +162,67 @@ div.detail button{
 				  $("div.list").show();
 			  }
 		  })
-	  })
+	  });
+	  
+	  
+	  //디테일페이지에서 수정버튼을 누르면 수정폼 가져오기
+	  $(document).on("click",".btnupdate",function(){
+		  
+		  var num=$(this).attr("num");
+		  //alert(num);
+		  
+		  //수정폼 출력
+		  $.ajax({
+			  type:"get",
+			  dataType:"json",
+			  url:"detailBoard.jsp",
+			  data:{"num":num},
+			  success:function(data){
+				  
+				  //수정폼에 데이타 넣어주기
+				  $("#unum").val(data.num);
+				  $("#uwriter").val(data.writer);
+				  $("#usubject").val(data.subject);
+				  $("#ucontent").val(data.content);
+				  $("#uavata").val(data.avata);
+				  
+				  //디테일페이지 안보이게
+				  $("div.detail").hide();
+				  //수정폼 보이게
+				  $("div.updateform").show();
+			  }
+		  });
+	  });
+	  
+	  //수정폼의 수정버튼 누르면 최종수정
+	  $("#btnUpdate").click(function(){
+		  
+		  var data=$("#updatefrm").serialize();
+		  //alert(data);
+		  
+		  $.ajax({
+			  
+			  type:"post",
+			  dataType:"html",
+			  url:"updateBoard.jsp",
+			  data:data,
+			  success:function(){
+				  
+				  //수정했으니까 다시 리스트호출
+				  list();
+				  
+				  //수정폼 안보이게 처리
+				  $("div.updateform").hide();
+				  
+				  //목록 or 디테일
+				  $("div.list").show();
+				
+				  
+				  
+			  }
+		  });
+	  });
+	  
 
   });
   
@@ -258,6 +325,59 @@ div.detail button{
           <td colspan="2" align="center">
             <button type="button" class="btn btn-danger"
             id="btnadd">DB추가</button>
+          </td>
+        </tr>
+     </table>
+   </form>
+</div>
+
+<!-- 수정폼 -->
+<div class="updateform" style="width: 400px;">
+   <form id="updatefrm">
+   <!-- num hidden -->
+   <input type="hidden" name="unum" id="unum">
+     <table class="table table-bordered">
+        <caption align="top"><b>게시글수정</b></caption>
+        <tr>
+          <th class="table-primary">작성자</th>
+          <td>
+            <input type="text" id="uwriter" name="uwriter" style="width: 120px;"
+            class="form-control">
+          </td>
+        </tr>
+        
+        <tr>
+          <th class="table-primary">제목</th>
+          <td>
+            <input type="text" id="usubject" name="usubject" style="width: 270px;"
+            class="form-control">
+          </td>
+        </tr>
+        
+        <tr>
+          <th class="table-primary">아바타</th>
+          <td>
+            <select id="uavata" name="uavata" class="form-control" style="width: 100px;">
+               <option value="../image/avata/b1.png">사랑해</option>
+               <option value="../image/avata/b8.png">최고</option>
+               <option value="../image/avata/b7.png">신남</option>
+               <option value="../image/avata/b6.png">좌절</option>
+               <option value="../image/avata/b5.png">배고파</option>
+               <option value="../image/avata/b2.png">심심함</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <textarea style="width: 380px; height: 100px;" id="ucontent"
+            class="form-control" name="ucontent"></textarea>
+          </td>
+        </tr>
+        
+        <tr>
+          <td colspan="2" align="center">
+            <button type="button" class="btn btn-warning"
+            id="btnUpdate">DB수정</button>
           </td>
         </tr>
      </table>
