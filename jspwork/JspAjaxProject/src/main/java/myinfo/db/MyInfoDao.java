@@ -26,7 +26,7 @@ public class MyInfoDao {
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getHp());
 			pstmt.setString(3, dto.getBlood());
-			pstmt.setDate(4, dto.getBirth());
+			pstmt.setString(4, dto.getBirth());
 			
 			pstmt.execute();
 		} catch (SQLException e) {
@@ -60,7 +60,7 @@ public class MyInfoDao {
 				dto.setName(rs.getString("name"));
 				dto.setBlood(rs.getString("blood"));
 				dto.setHp(rs.getString("hp"));
-				dto.setBirth(rs.getDate("birth"));
+				dto.setBirth(rs.getString("birth"));
 				dto.setWriteday(rs.getTimestamp("writeday"));
 				
 				list.add(dto);
@@ -119,7 +119,7 @@ public class MyInfoDao {
 				dto.setName(rs.getString("name"));
 				dto.setBlood(rs.getString("blood"));
 				dto.setHp(rs.getString("hp"));
-				dto.setBirth(rs.getDate("birth"));
+				dto.setBirth(rs.getString("birth"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -147,7 +147,7 @@ public class MyInfoDao {
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getBlood());
 			pstmt.setString(3, dto.getHp());
-			pstmt.setDate(4, dto.getBirth());
+			pstmt.setString(4, dto.getBirth());
 			pstmt.setString(5, dto.getNum());
 			pstmt.execute();
 		} catch (SQLException e) {

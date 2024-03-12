@@ -25,7 +25,7 @@
 <%
 MyInfoDao dao=new MyInfoDao();
 List<MyInfoDto>list=dao.getAllInfos();
-SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm");
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 %>
 <body>
 <div style="margin: 50px 100px; width: 1000px;">
@@ -56,7 +56,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm");
 	    	  <td><%=dto.getName() %></td>
 	    	  <td><%=dto.getHp() %></td>
 	    	  <td><%=dto.getBlood() %>형</td>
-	    	  <td><%=dto.getBirth() %></td>
+	    	  <td><%=dto.getBirth()%></td>
 	    	  <td><%=sdf.format(dto.getWriteday()) %></td>
 	    	  <td>
 	    	    <input type="button" class="btn btn-outline-info btn-sm"

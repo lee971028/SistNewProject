@@ -1,6 +1,6 @@
 package myinfo.db;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 
 
@@ -10,7 +10,7 @@ public class MyInfoDto {
 	private String name;
 	private String blood;
 	private String hp;
-	private Date birth;
+	private String birth;
 	private Timestamp writeday;
 	
 	
@@ -39,17 +39,18 @@ public class MyInfoDto {
 		this.hp = hp;
 	}
 	
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
+	
 	public Timestamp getWriteday() {
 		return writeday;
 	}
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
 	
 	

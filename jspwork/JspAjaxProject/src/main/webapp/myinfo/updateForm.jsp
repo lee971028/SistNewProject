@@ -99,14 +99,15 @@
               <th width="100" class="table-info">생년월일</th>
               <td>
                 <input type="date" name="birth" 
-                value="<%=dto.getBirth()%>">
+                 class="form-control" style="width: 200px;" value="<%=dto.getBirth() %>">
               </td>
             </tr>
             
             <tr>
               <td colspan="2" align="center">
                 <input type="submit" value="수정" class="btn btn-outline-warning">
-                <input type="button" value="목록" class="btn btn-outline-success">
+                <input type="button" value="목록" class="btn btn-outline-success"
+                onclick="location.href='infoList.jsp'">
               </td>
             </tr>
       </table>
