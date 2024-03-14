@@ -136,4 +136,86 @@ public class UploadBoardDao {
 		return dto;
 	}
 	
+	//수정할때 num과 pass받아서 비번이 같으면 true,틀리면 false반환
+	public boolean isEqualPass(String num,String pass)
+	{
+		boolean b=false;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select count(*) from uploadboard where num=? and pass=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.setString(2, pass);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				if(rs.getInt(1)==1)
+					b=true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return b;
+	}
+	
+	//수정
+	public void updateUploadBoard(UploadBoardDto dto)
+	{
+		//subject,content,imagname만수정
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update uploadboard set subject=?,content=?,imgname=? where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getSubject());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getImgname());
+			pstmt.setString(4, dto.getNum());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
+	//삭제
+	public void deleteUploadBoard(String num)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from uploadboard where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
 }
