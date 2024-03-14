@@ -136,4 +136,109 @@ public class SimpleBoardDao {
 		}
 		
 	}
+	
+	//가장최근에 추가된 글의 num값 알기
+	public int getMaxNum()
+	{
+		int max=0;;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select max(num) max from simpleboard";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				max=rs.getInt("max"); //rs.getInt(1)
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return max;
+	}
+	
+	//페이징..1.전체갯수반환   2.부분조회(startnum부터 perpage갯수만큼 반환)
+	//1.전체갯수반환  
+	
+	public int getTotalCount()
+	{
+		
+		int total=0;
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select count(*) from simpleboard";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+				total=rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return total;
+	}
+	
+	//2.부분조회(startnum부터 perpage갯수만큼 반환)
+	public List<SimpleBoardDto> getPagingList(int startNum,int perPage)
+	{
+		List<SimpleBoardDto> list=new ArrayList<SimpleBoardDto>();
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from simpleboard order by num desc limit ?,?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, perPage);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				SimpleBoardDto dto=new SimpleBoardDto();
+				
+				dto.setNum(rs.getString("num"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setPass(rs.getString("pass"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setWriteday(rs.getTimestamp("writeday"));
+				
+				list.add(dto);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return list;
+		
+	}
 }

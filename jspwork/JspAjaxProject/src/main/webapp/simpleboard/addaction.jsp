@@ -20,7 +20,10 @@
   dao.insertBoard(dto);
 
 //목록
-response.sendRedirect("boardlist.jsp");
+//response.sendRedirect("boardlist.jsp");
+//인서트후 내용보기로 이동하려면 방금 insert된 num값을 알아야한다
+int num=dao.getMaxNum();
+response.sendRedirect("contentview.jsp?num="+num);
 
 %>
 </body>
