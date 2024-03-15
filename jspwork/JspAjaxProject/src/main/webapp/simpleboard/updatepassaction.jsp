@@ -1,3 +1,4 @@
+<%@page import="simpleboard.model.SimpleBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +11,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%
+  String num=request.getParameter("num");
+  String pass=request.getParameter("pass");
+  
+  SimpleBoardDao dao=new SimpleBoardDao();
+  
+  boolean check=dao.isPassCheck(num, pass);
+  
+  //true면 updateform으로 이동(num전달)
+  //false면 경고후 돌아감
+  if(check){
+	  response.sendRedirect("updateform.jsp?num="+num);
+  }else{%>
+	  <script type="text/javascript">
+	    alert("비밀번호가 맞지않습니다");
+	    history.back();
+	  </script>
+  <%}
+%>
 </body>
 </html>
