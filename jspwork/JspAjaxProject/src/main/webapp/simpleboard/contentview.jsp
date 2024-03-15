@@ -83,6 +83,30 @@
 			  }
 		  });
 	  });
+	  
+	  
+	  //리스트의 삭제버튼클릭시 삭제
+	  $(document).on("click",".adel",function(){
+		  
+		  var idx=$(this).attr("idx");
+		  //alert(idx);
+		  var ans=confirm("댓글을 삭제하려면 [확인]을 눌러주세요");
+		  
+		  if(ans){
+			  $.ajax({
+				  type:"get",
+				  url:"../simpleboardanswer/deleteAnswer.jsp",
+				  dataType:"html",
+				  data:{"idx":idx},
+				  success:function(){
+					  alert("삭제되었습니다");
+					  list();
+				  }
+			  })
+		  }
+		 
+	  });
+	  
   });
   
   
@@ -107,7 +131,7 @@
 				  s+="<div>"+item.nick+":  "+item.content;
 				  s+="<span class='aday'>"+item.writeday+"</span>";
 				  s+="<i class='bi bi-pencil-square amod'></i>";
-				  s+="<i class='bi bi-trash adel'></i>";
+				  s+="<i class='bi bi-trash adel'  idx="+item.idx+"></i>";
 			  });
 			  $("div.alist").html(s);
 			  

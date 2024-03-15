@@ -58,6 +58,7 @@ public class SimpleAnswerDao {
 			{
 				SimpleAnswerDto dto=new SimpleAnswerDto();
 				
+				dto.setIdx(rs.getString("idx"));
 				dto.setNum(rs.getString("num"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setContent(rs.getString("content"));
@@ -75,4 +76,28 @@ public class SimpleAnswerDao {
 		
 		return list;
 	}
+	
+	//삭제
+	public void deleteAnswer(String idx)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from simpleboardanswer where idx=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, idx);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
+	
+	
 }
