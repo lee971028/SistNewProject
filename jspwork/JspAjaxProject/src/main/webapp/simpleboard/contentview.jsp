@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -22,18 +23,98 @@
     color: #ccc;
     font-size: 0.8em;
   }
+  
+  span.aday{
+   float: right;
+   font-size: 0.8em;
+   color: #bbb;
+  }
+  
+  div.alist{margin-left: 20px;}
+  
+  i.amod{
+    margin-left: 20px;
+    color: green;
+  }
+  
+  i.adel{
+    color: red;
+  }
 
 </style>
 
 <script type="text/javascript">
   $(function(){
 	  
+	  list();
+	  
 	  //ajax insert
 	  var num=$("#num").val();
-	  alert(num);
+	  //alert(num);
 	  
+	  $("#btnasend").click(function(){
+		  
+		  var nickname=$("#nickname").val().trim();
+		  var content=$("#content").val().trim();
+		  
+		   if(nickname=='')
+			{
+			   alert("닉네임을 입력후 저장해주세요");
+			   return;
+			}
+		   if(content=='')
+			{
+			   alert("댓글내용을 입력후 저장해주세요");
+			   return;
+			}
+		  
+		  $.ajax({
+			  
+			  type:"get",
+			  url:"../simpleboardanswer/insertAnswer.jsp",
+			  dataType:"html",
+			  data:{"num":num,"nickname":nickname,"content":content},
+			  success:function(){
+				 //기존입력값 지우기
+				 $("#nickname").val('');
+				 $("#content").val('');
+				 
+				 list();
+			  }
+		  });
+	  });
+  });
+  
+  
+  function list()
+  {
+	  console.log("list num="+$("#num").val());
 	  
-  })
+	  $.ajax({
+		  
+		  type:"get",
+		  url:"../simpleboardanswer/listAnswer.jsp",
+		  dataType:"json",
+		  data:{"num":$("#num").val()},
+		  success:function(res){
+			 
+			  //댓글갯수출력
+			  $("b.acount>span").text(res.length);
+			  
+			  var s="";
+			  $.each(res,function(idx,item){
+				  
+				  s+="<div>"+item.nick+":  "+item.content;
+				  s+="<span class='aday'>"+item.writeday+"</span>";
+				  s+="<i class='bi bi-pencil-square amod'></i>";
+				  s+="<i class='bi bi-trash adel'></i>";
+			  });
+			  $("div.alist").html(s);
+			  
+		  }
+		  
+	  });
+  }
 </script>
 
 </head>
@@ -81,7 +162,7 @@
             <input type="text" id="content" class="form-control"
             style="width: 300px; margin-left: 10px;" placeholder="댓글메세지">
             
-            <button type="button" id="btnsend"
+            <button type="button" id="btnasend"
             class="btn btn-info btn-sm" style="margin-left: 10px;">저장</button>
          </div>
        </td>

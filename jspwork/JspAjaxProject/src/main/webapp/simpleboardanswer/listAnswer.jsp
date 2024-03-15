@@ -1,15 +1,31 @@
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="simpleboardanswer.model.SimpleAnswerDao"%>
+<%@page import="simpleboardanswer.model.SimpleAnswerDto"%>
+<%@page import="java.util.List"%>
+<%@page import="simpleboard.model.SimpleBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<%
+	String num=request.getParameter("num");
+	SimpleAnswerDao dao=new SimpleAnswerDao();
+	List<SimpleAnswerDto> list=dao.getAnswerList(num);
+	
+	JSONArray arr=new JSONArray();
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	for(SimpleAnswerDto dto:list)
+	{
+		JSONObject ob=new JSONObject();
+		
+		ob.put("idx", dto.getIdx());
+		ob.put("num", dto.getNum());
+		ob.put("nick", dto.getNickname());
+		ob.put("content", dto.getContent());
+		ob.put("writeday", sdf.format(dto.getWriteday()));
+		
+		arr.add(ob);
+	}
+%>
+<%=arr.toString()%>
