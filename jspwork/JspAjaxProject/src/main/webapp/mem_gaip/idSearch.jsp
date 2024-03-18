@@ -1,3 +1,4 @@
+<%@page import="mem_gaip.model.MemgaipDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+   function saveId(id){
+	   alert(id);
+	   //부모창:opener
+	   opener.mfrm.m_id.value=id;
+	   
+	   window.close();//현재창닫기
+   }
+
+</script>
 </head>
 <body>
   <%
@@ -26,7 +37,36 @@
     	      </div>
     	   </form>
     	</div>
-    <%}
+    <%}else{
+    	
+    	//액션처리
+    	String m_id=request.getParameter("m_id");
+    	//dao선언후 아이디가 db에 존재하는지 확인
+    	MemgaipDao dao=new MemgaipDao();
+    	boolean b=dao.isIdCheck(m_id);
+    	
+    	if(b){
+    		//존재하는경우
+    		%>
+    		<div style="margin: 50px 50px;">
+    		   <h5><%=m_id %>는 이미 가입된 아이디 입니다</h5>
+    		   <img alt="" src="../image/jquery_img/image_01.png" width="60" align="left">
+    		   
+    		   <button type="button" class="btn btn-danger" onclick="location.href='idSearch.jsp'">다시입력</button>
+    		</div>
+    	<%}else{
+    		//존재하지 않는경우
+    		%>
+    		<div style="margin: 50px 50px;">
+    		   <h5><%=m_id %>는 사용가능한 아이디 입니다</h5>
+    		   <img alt="" src="../image/jquery_img/03.png" width="60" align="left">
+    		   
+    		   <button type="button" class="btn btn-info" onclick="saveId('<%=m_id%>')">적용하기</button>
+    		   <button type="button" class="btn btn-danger" onclick="location.href='idSearch.jsp'">다시입력</button>
+    		</div>
+    	<%}
+    	
+    }
   %>
 </body>
 </html>

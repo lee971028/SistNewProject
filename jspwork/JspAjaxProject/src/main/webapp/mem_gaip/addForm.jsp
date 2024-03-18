@@ -13,11 +13,20 @@
 	  window.open("idSearch.jsp","idcheck","left='100px',top='100px',width='400px',height='200px'")
   }
 
+  $(function(){
+	  
+	  $("#btnsubmit").click(function(){
+		  if(mfrm.m_id.value.length==0){
+			  alert("아이디 입력버튼을 눌러주세요");
+			  return false; //form action호출 안됨
+		  }
+	  })
+  })
 </script>
 </head>
 <body>
 <div style="margin: 50px 100px; width: 500px;">
-	<form action="addMember.jsp" method="post" enctype="multipart/form-data">
+	<form action="addMember.jsp" method="post" enctype="multipart/form-data" name="mfrm">
   		<table class="table table-bordered">
   			<caption align="top"><b>회원가입</b></caption>
   			<tr>
@@ -52,7 +61,7 @@
   			  <td width="120" class="table-primary">사진</td>
   			  <td>
   			    <input type="file" class="form-control"
-  			    style="width: 200px;" name="m_photo" required="required">
+  			    style="width: 200px;" name="m_photo" >
   			  </td>
   			</tr>
   			
@@ -66,7 +75,7 @@
   			
   			<tr>
   			  <td colspan="2" align="center">
-  			    <button type="submit" class="btn btn-info">회원가입신청</button>
+  			    <button type="submit" class="btn btn-info" id="btnsubmit">회원가입신청</button>
   			  </td>
   			</tr>
   			
