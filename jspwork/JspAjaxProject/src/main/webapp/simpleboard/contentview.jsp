@@ -107,6 +107,64 @@
 		 
 	  });
 	  
+	  //댓글 글자 누르면 댓글창 나오게
+	  $("b.acount").click(function(){
+		  $("div.aupdateform").hide();
+		  $("div.aform").toggle();
+		  
+	  });
+	  
+	  //일단 수정창 안보이게
+	  $("div.aupdateform").hide();
+	  
+	 //댓글리스트의 수정아이콘 누르면 수정댓글창에 해당idx의 내용 띄우기
+	 $(document).on("click",".amod",function(){
+		 $("div.aform").hide();
+		 $("div.aupdateform").show();
+		 
+		 var idx=$(this).attr("idx");
+		 //alert(idx);
+		 $("#idx").val(idx);
+		 
+		 $.ajax({
+			 type:"get",
+			 dataType:"json",
+			 url:"../simpleboardanswer/oneDataAnswer.jsp",
+			 data:{"idx":idx},
+			 success:function(res){
+				 
+				 $("#idx").val(res.idx);
+				 $("#unickname").val(res.nick);
+				 $("#ucontent").val(res.content);
+			 }
+		 });
+	 });
+	 
+	 
+	 
+	 //수정
+	 $("#btnaUsend").click(function(){
+		 
+		 var idx=$("#idx").val();
+		 var nick=$("#unickname").val();
+		 var content=$("#ucontent").val();
+		 
+		 //alert(idx+","+nick+","+content);
+		 
+		 $.ajax({
+			 type:"get",
+			 url:"../simpleboardanswer/updateAnswer.jsp",
+			 dataType:"html",
+			 data:{"idx":idx,"nickname":nick,"content":content},
+			 success:function(){
+				 
+				 list();
+				 $("div.aupdateform").hide();
+				 $("div.aform").show();
+			 }
+		 })
+	 });
+	  
   });
   
   
@@ -130,7 +188,7 @@
 				  
 				  s+="<div>"+item.nick+":  "+item.content;
 				  s+="<span class='aday'>"+item.writeday+"</span>";
-				  s+="<i class='bi bi-pencil-square amod'></i>";
+				  s+="<i class='bi bi-pencil-square amod' idx="+item.idx+"></i>";
 				  s+="<i class='bi bi-trash adel'  idx="+item.idx+"></i>";
 			  });
 			  $("div.alist").html(s);
@@ -177,10 +235,10 @@
      <tr>
        <td>
          <b class="acount">댓글<span>0</span></b>
-         <div class="alist">
+         <div class="alist" id="alist">
              댓글목록
          </div>
-         <div class="aform input-group">
+           <div class="aform input-group">
             <input type="text" id="nickname" class="form-control"
             style="width: 80px;" placeholder="닉네임">
             <input type="text" id="content" class="form-control"
@@ -189,6 +247,19 @@
             <button type="button" id="btnasend"
             class="btn btn-info btn-sm" style="margin-left: 10px;">저장</button>
          </div>
+         <!-- 수정창 -->
+         <div class="aupdateform input-group">
+            <input type="hidden" id="idx">
+            <input type="text" id="unickname" class="form-control"
+            style="width: 80px;" placeholder="닉네임">
+            <input type="text" id="ucontent" class="form-control"
+            style="width: 300px; margin-left: 10px;" placeholder="댓글메세지">
+            
+            <button type="button" id="btnaUsend"
+            class="btn btn-warning btn-sm" style="margin-left: 10px;">수정</button>
+         </div>
+         
+         
        </td>
      </tr>
      
