@@ -28,7 +28,36 @@
    cursor: pointer;
   }
   
- 
+  span.day{
+    font-size: 10pt;
+    color: gray;
+    float: right;
+    
+  }
+  
+  span.writer{
+    font-family: 'Noto Serif KR';
+    font-size: 13pt;
+    font-weight: bold;
+  }
+  
+  span.title{
+  
+     font-size: 20pt;
+     font-weight: bold;
+     font-family: 'Noto Serif KR';
+  }
+  
+  div.story>pre{
+  	
+  	font-size: 13pt;
+    font-family: 'Noto Serif KR';
+  }
+  
+  span.likes{
+  
+  float: right;
+  margin-right: 10px;}
 
 </style>
 <script type="text/javascript">
@@ -227,7 +256,7 @@ function list()
   <div class="board updateform">수정폼</div>
   <div class="board list">목록</div>
   <div class="board detailview">
-     <table class="story table table-bordered" style="width: 600px;">
+     <table class="table table-bordered" style="width: 600px;">
         <caption align="top"><b>게시글 확인</b></caption>
         <tr>
 	        <td>
