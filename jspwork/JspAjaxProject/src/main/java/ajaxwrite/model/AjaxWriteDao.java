@@ -75,4 +75,42 @@ public class AjaxWriteDao {
 	  
 	  return list;
   }
+  
+  //num번째  dto반환
+  public AjaxWriteDto getData(String num)
+  {
+	  AjaxWriteDto dto=new AjaxWriteDto();
+	  
+	  Connection conn=db.getConnection();
+	  PreparedStatement pstmt=null;
+	  ResultSet rs=null;
+	  
+	  String sql="select * from ajaxwrite where num=?";
+	  
+	  try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, num);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next())
+		{
+			dto.setNum(rs.getString("num"));
+			dto.setSubject(rs.getString("subject"));
+			dto.setStory(rs.getString("story"));
+			dto.setImage(rs.getString("image"));
+			dto.setLikes(rs.getInt("likes"));
+			dto.setWriteday(rs.getTimestamp("writeday"));
+			dto.setWriter(rs.getString("writer"));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		db.dbClose(rs, pstmt, conn);
+	}
+	  
+	  
+	  return dto;
+  }
+  
 }

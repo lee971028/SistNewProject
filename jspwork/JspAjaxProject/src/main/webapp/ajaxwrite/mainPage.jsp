@@ -23,6 +23,12 @@
      
      width: 800px;
   }
+  
+  td.subject{
+   cursor: pointer;
+  }
+  
+ 
 
 </style>
 <script type="text/javascript">
@@ -86,7 +92,30 @@ $(function(){
 		})
 	})
 	
-	
+	//제목클릭시 이벤트
+	$(document).on("click","td.subject",function(){
+		var num=$(this).attr("num");
+		//alert(num);
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"getDataWrite.jsp",
+			data:{"num":num},
+			success:function(data){
+				
+				$("span.title").html(data.subject);
+				$("span.day").html(data.writeday);
+				$("span.writer").html(data.writer);
+				$("div.story").html("<pre>"+data.story+"</pre>");
+				$("div.image").html("<img src='"+data.image+"'>");
+				
+				//목록안보이게
+				$("div.list").hide();
+				$("div.detailview").show();
+			}
+		})
+	})
 	
 })
 
@@ -124,7 +153,7 @@ function list()
 					//출력
 					s+="<tr>";
 					s+="<td align='center'>"+(i+1)+"</td>";
-					s+="<td>"+elt.subject+"</td>";
+					s+="<td num="+elt.num+" class='subject'>"+elt.subject+"</td>";
 					s+="<td align='center'>"+elt.writer+"</td>";
 					s+="<td align='center'>"+elt.writeday+"</td>";
 					s+="<td align='center'>"+elt.likes+"</td>";
@@ -197,7 +226,46 @@ function list()
   </div>
   <div class="board updateform">수정폼</div>
   <div class="board list">목록</div>
-  <div class="board detailview">내용보기</div>
+  <div class="board detailview">
+     <table class="story table table-bordered" style="width: 600px;">
+        <caption align="top"><b>게시글 확인</b></caption>
+        <tr>
+	        <td>
+	          <span class="title">제목</span>
+	          <span class="day">날짜</span>
+	        </td>
+        </tr>
+        <tr>
+	        <td>
+	          <span class="writer">작성자</span>
+	          <span class="likes">
+	          		<i class="bi bi-balloon-heart-fill" style="color: red;"></i>
+	              	<span class="su">0</span>
+	          </span>
+	        </td>
+        </tr>
+        
+        <tr>
+	        <td style="height: 200px;" valign="top">
+	          <div class="story">내용</div>
+	          <div class="image">이미지</div>
+	        </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <button type="button" class="btn btn-outline-info btn-sm"
+            onclick="location.href='mainPage.jsp'">목록</button>
+            <button type="button" class="addbtn btn btn-outline-info btn-sm"
+            >글쓰기</button>
+            <button type="button" class="updatebtn btn btn-outline-info btn-sm"
+            >수정</button>
+            <button type="button" class="deletebtn btn btn-outline-info btn-sm"
+            >삭제</button>
+          </td>
+        </tr>
+     </table>
+  </div>
   
 </body>
 </html>
