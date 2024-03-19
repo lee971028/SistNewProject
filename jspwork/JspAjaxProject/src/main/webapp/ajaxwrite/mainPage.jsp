@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -14,7 +15,7 @@
    left: 20%;
    top: 20%;
    font-family: 'Noto Sans KR';
-   font-size: 1.1em;
+   font-size: 1.0em;
     
   }
   
@@ -26,29 +27,117 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	
+	$("div.addform").hide();
 	$("div.updateform").hide();
 	$("div.detailview").hide();
-	$("div.list").hide();
+	//$("div.list").hide();
 	
-	
+	list();
 	
 	//이미지 선택시
 	$("#selimage").change(function(){
 		var im=$(this).val();
 		
-		//이미지명을 현재값에 추가로 더하기
-		var data=$("#image").val();
-		$("#image").val(data+im);
+		//이미지명을 현재값에 넣기
+		$("#image").val(im);
 		
 		//아래 이미지뷰에 추가로 이미지가 보이게
 		var s="<img src='"+im+"' width='50'>";
 		$("#imgview").html(s);
+	});
+	
+	//글쓰기 버튼 누르면 입력폼나오게
+	$(document).on("click",".addbtn",function(){
+		$("div.list").hide();
+		$("div.addform").show();
+	})
+	
+	
+	//db추가버튼
+	$("#btninsert").click(function(){
+		
+		/* var data=$("#addfrm").serialize();
+		alert(data); */
+		var writer=$("#writer").val();
+		var subject=$("#subject").val();
+		var story=$("#story").val();
+		var image=$("#image").val();
+		alert(image);
+		
+		$.ajax({
+			type:"post",
+			dataType:"html",
+			url:"insertWrite.jsp",
+			data:{"writer":writer,"subject":subject,"story":story,"image":image},
+			success:function(){
+				
+				list();
+				
+				$("#writer").val("");
+				$("#subject").val("");
+				$("#story").val("");
+				$("#image").val("");
+				
+				$("#imgview").empty();
+				
+				$("div.addform").hide();
+				$("div.list").show();
+			}
+		})
 	})
 	
 	
 	
 })
+
+function list()
+{
+	$.ajax({
+		type:"get",
+		dataType:"json",
+		url:"listWrite.jsp",
+		success:function(res){
+			
+			//alert(res.length);
+			
+			var s="";
+			
+			s+="<table class='board table table-bordered'>";
+			s+="<caption align='top'><button type='button' class='btn btn-info addbtn'>";
+			s+="<i class='bi bi-pencil'></i>글쓰기</button></caption>";
+			s+="<tr class='table-light'>";
+			s+="<td width='100' >번호</td>";
+			s+="<td width='300'>제목</td>";
+			s+="<td width='150'>작성자</td>";
+			s+="<td width='200'>작성일</td>";
+			s+="<td width='100'>추천</td>";
+			s+="</tr>";
+			
+			var n=res.length;
+			if(n==0){
+				s+="<tr>";
+				s+="<td colspan='5' align='center'>";
+				s+="<b>게시된 글이 없습니다</b></td></tr>";
+			}else{
+				
+				$.each(res,function(i,elt){
+					//출력
+					s+="<tr>";
+					s+="<td align='center'>"+(i+1)+"</td>";
+					s+="<td>"+elt.subject+"</td>";
+					s+="<td align='center'>"+elt.writer+"</td>";
+					s+="<td align='center'>"+elt.writeday+"</td>";
+					s+="<td align='center'>"+elt.likes+"</td>";
+					s+="</tr>";
+				})
+			}
+			s+="</table>";
+			
+			$("div.list").html(s);
+		}
+	})
+	
+}
 
 </script>
 </head>
@@ -62,7 +151,7 @@ $(function(){
            <th width="100" class="table-warning">작성자</th>
            <td>
              <input type="text" name="writer" id="writer"
-             class="form-control" required="required" style="width: 130px;">
+             class="form-control"  style="width: 130px;">
            </td>
          </tr>
          
@@ -70,7 +159,7 @@ $(function(){
            <th width="100" class="table-warning">제목</th>
            <td>
              <input type="text" name="subject" id="subject"
-             class="form-control" required="required" style="width: 250px;">
+             class="form-control"  style="width: 250px;">
            </td>
          </tr>
          
@@ -78,7 +167,7 @@ $(function(){
            <th width="100" class="table-warning">내용</th>
            <td>
              <textarea style="width: 300px; height: 100px;"
-             name="story" id="story" required="required"
+             name="story" id="story" 
              class="form-control"></textarea>
            </td>
          </tr>
@@ -100,7 +189,7 @@ $(function(){
          </tr>
          <tr>
            <td colspan="2" align="center">
-             <button type="submit" class="btn btn-danger" id="btninsert">DB추가</button>
+             <button type="button" class="btn btn-danger" id="btninsert">DB추가</button>
            </td>
          </tr>
        </table>
