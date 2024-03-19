@@ -72,9 +72,9 @@
         	     <td align="center" valign="middle"><%=sdf.format(dto.getGaipday()) %></td>
         	     <td align="center" valign="middle">
         	       <button type="button" class="btn btn-success btn-sm"
-        	       onclick="location.href=''">수정</button>
+        	       onclick="location.href='updatePassForm.jsp?m_num=<%=dto.getM_num()%>'">수정</button>
         	       <button type="button" class="btn btn-danger btn-sm"
-        	       onclick="location.href=''">삭제</button>
+        	       onclick="location.href='deletepassForm.jsp?m_num=<%=dto.getM_num()%>'">삭제</button>
         	     </td>
         	   </tr>
            <%}

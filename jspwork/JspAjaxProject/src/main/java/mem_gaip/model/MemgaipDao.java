@@ -108,4 +108,121 @@ public class MemgaipDao {
 		
 		return list;
 	}
+	
+	//비밀번호 맞추기
+	public boolean isEqualPass(String m_num,String m_pass)
+	{
+		boolean check=false;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select count(*) from memgaip where m_num=? and m_pass=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m_num);
+			pstmt.setString(2, m_pass);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				if(rs.getInt(1)==1)
+					check=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return check;
+	}
+	
+	//num에 대한 dto반환
+	public MemgaipDto getData(String m_num)
+	{
+		MemgaipDto dto=new MemgaipDto();
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from memgaip where m_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, m_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				dto.setM_num(rs.getString("m_num"));
+				dto.setM_id(rs.getString("m_id"));
+				dto.setM_hp(rs.getString("m_hp"));
+				dto.setM_name(rs.getString("m_name"));
+				dto.setM_photo(rs.getString("m_photo"));
+				dto.setGaipday(rs.getTimestamp("gaipday"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return dto;
+	}
+	
+	//수정
+	public void updateMemgaip(MemgaipDto dto)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="update memgaip set m_name=?,m_hp=?,m_photo=? where m_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getM_name());
+			pstmt.setString(2, dto.getM_hp());
+			pstmt.setString(3, dto.getM_photo());
+			pstmt.setString(4, dto.getM_num());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
+	//삭제
+	public void deleteMemgaip(String m_num)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from memgaip where m_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, m_num);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
 }
