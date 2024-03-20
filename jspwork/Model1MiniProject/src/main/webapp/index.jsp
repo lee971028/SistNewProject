@@ -18,7 +18,7 @@
      width: 100%;
      height: 80px;
      line-height: 80px;
-     font-size: 30pt;
+     font-size: 20pt;
      font-family: 'Noto Serif KR';
      text-align: center;
   }
@@ -51,7 +51,8 @@
   
      width: 1200px;
      height: 700px;
-     font-size: 15pt;
+     font-size: 12pt;
+     color:gray;
      font-family: 'Noto Serif KR';
      left: 400px;
      top: 200px;

@@ -10,19 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-  request.setCharacterEncoding("utf-8");
-  String email=request.getParameter("email1")+"@"+request.getParameter("email2");
-%>
-<jsp:useBean id="dao" class="data.dao.MemberDao"/>
-<jsp:useBean id="dto" class="data.dto.MemberDto"/>
-<jsp:setProperty property="*" name="dto"/>
-<%
-  dto.setEmail(email);
-  dao.insertMember(dto);
-  
-  //일단은 리스트..가입성공페이지로 바꿀예정
-  response.sendRedirect("../index.jsp?main=member/memberlist.jsp");
-%>
+
 </body>
 </html>
