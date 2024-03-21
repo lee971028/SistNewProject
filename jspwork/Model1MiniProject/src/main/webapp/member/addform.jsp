@@ -64,7 +64,7 @@
 </script>
 </head>
 <body>
-<div style="margin: 100px 100px; width: 500px;">
+<div style="margin: 100px 200px; width: 500px;">
 	<form action="member/addaction.jsp" method="post" onsubmit="return check(this)">
 	   <table class="table table-bordered" >
 	      <caption align="top"><b>회원가입</b></caption>
