@@ -49,13 +49,13 @@
 								<li><a href="#"><i class="icon-gift"></i> 스마트게시판</a></li>
 
 							</ul></li>
-						<li><a href="#">로그인</a>
+						<li><a href="#">회원</a>
 							<ul class="sub-menu">
 								<li><a href="index.jsp?main=member/addform.jsp"><i
 										class="icon-wrench"></i> 회원가입</a></li>
 								<li><a href="index.jsp?main=member/memberlist.jsp"><i class="icon-credit-card"></i> 회원목록</a></li>
 								<li><a href="index.jsp?main=member/mypage.jsp"><i class="icon-gift"></i> 마이페이지</a></li>
-
+								<li><a href="index.jsp?main=login/loginmain.jsp"><i class="icon-gift"></i> 로그인</a></li>
 							</ul></li>
 						<li class="parent"><a href="#">방명록</a>
 							<ul class="sub-menu">
