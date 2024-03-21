@@ -28,6 +28,20 @@
 	  //alert(num);
 	  $("#delnum").val(num);
 	  $("#myModal").modal('show');
+	  
+	  
+	  //삭제버튼이벤트
+	  $("button.btndel").click(function(){
+		  
+		  //num,pass읽기
+		  var num=$("#delnum").val();
+		  var pass=$("#delpass").val();
+		  
+		  //alert(num+","+pass);
+		  //삭제파일 호출
+		  location.href="member/deletemypage.jsp?num="+num+"&pass="+pass;
+		  
+	  })
   }
 
 </script>
@@ -94,7 +108,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btndel" data-bs-dismiss="modal">삭제</button>
       </div>
 
     </div>
