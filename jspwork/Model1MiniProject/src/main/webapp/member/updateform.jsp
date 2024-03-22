@@ -1,3 +1,6 @@
+<%@page import="java.util.StringTokenizer"%>
+<%@page import="data.dto.MemberDto"%>
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -63,52 +66,53 @@
   }
 </script>
 </head>
+<%
+   //num
+   String num=request.getParameter("num");
+   MemberDao dao=new MemberDao();
+   MemberDto dto=dao.getDataMember(num);
+   
+   //email @구분자로 분리
+   StringTokenizer st=new StringTokenizer(dto.getEmail(),"@");
+   String email1=st.nextToken();
+   String email2=st.nextToken();
+
+%>
 <body>
 <div style="margin: 100px 200px; width: 500px;">
-	<form action="member/addaction.jsp" method="post" onsubmit="return check(this)">
+	<form action="member/updateaction.jsp" method="post" onsubmit="return check(this)">
+	<input type="hidden" name="num" value="<%=num %>">
 	   <table class="table table-bordered" >
-	      <caption align="top"><b>회원가입</b></caption>
+	      <caption align="top"><b>마이정보수정</b></caption>
 	      <tr>
 	        <th width="100" class="table-success">아이디</th>
 	        <td>
-	        	<div class="d-inline-flex">
-		          <input type="text" name="id" id="id" maxlength="8" class="form-control"
-		          required="required" style="width: 120px;">
-		          <button type="button" class="btn btn-danger" id="btnIdCheck"
-		          style="margin-left: 10px;">중복체크</button>
-		          <span class="idsuccess" style="color: blue; margin-left: 10px;"></span>
+	        	<b><%=dto.getId() %></b>
 	          </div>
 	        </td>
 	      </tr>
-	      <tr>
-	        <th width="100" class="table-success">비밀번호</th>
-		        <td>
-		          <div class="d-inline-flex">
-			          <input type="password" name="pass" class="form-control"
-			          required="required" style="width: 130px;" placeholder="비밀번호">
-			          <input type="password" name="pass2" class="form-control"
-			          required="required" style="width: 130px; margin-left: 5px;"placeholder="비밀번호 확인">
-		          </div>
-		        </td>
-	      </tr>
+	      
 	      
 	      <tr>
 	        <th width="100" class="table-success">이름</th>
 	        <td>
-	          <input type="text" name="name" class="form-control" required="required" style="width: 120px;">
+	          <input type="text" name="name" class="form-control" required="required" style="width: 120px;"
+	          value="<%=dto.getName()%>">
 	        </td>
 	      </tr>
 	      
 	      <tr>
 	        <th width="100" class="table-success">핸드폰</th>
 	        <td>
-	          <input type="text" name="hp" class="form-control" required="required" style="width: 180px;">
+	          <input type="text" name="hp" class="form-control" required="required" style="width: 180px;"
+	          value="<%=dto.getHp()%>">
 	        </td>
 	      </tr>
 	      <tr>
 	        <th width="100" class="table-success">주소</th>
 	        <td>
-	          <input type="text" name="addr" class="form-control" required="required" style="width: 330px;">
+	          <input type="text" name="addr" class="form-control" required="required" style="width: 330px;"
+	          value="<%=dto.getAddr()%>">
 	        </td>
 	      </tr>
 	      <tr>
@@ -116,10 +120,10 @@
 	        <td>
 	         <div class="d-inline-flex">
 	          <input type="text" name="email1" class="form-control" required="required"
-	          style="width: 80px;">
+	          style="width: 80px;" value="<%=email1%>">
 	          <b style="margin-left: 10px;">@</b>
 	          <input type="text" name="email2" id="email2" class="form-control" required="required"
-	          style="width: 120px; margin-left: 10px;">
+	          style="width: 120px; margin-left: 10px;" value="<%=email2%>">
 	          <select id="selemail" class="form-control" style="margin-left: 10px;">
 	             <option value="-">직접입력</option>
 	             <option value="naver.com">네이버</option>
@@ -135,7 +139,7 @@
 	      <tr>
 	        <td colspan="2" align="center">
 	            <button type="submit" class="btn btn-outline-info"
-	            style="width: 100px;">저장하기</button>
+	            style="width: 100px;">수정하기</button>
 	            <button type="reset" class="btn btn-outline-info"
 	            style="width: 100px;">초기화</button>
 	        </td>

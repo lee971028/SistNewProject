@@ -1,4 +1,3 @@
-<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,21 +11,18 @@
 </head>
 <body>
 <%
-  String num=request.getParameter("num");
-  String pass=request.getParameter("pass");
-  
-  MemberDao dao=new MemberDao();
-  boolean b=dao.isEqualPass(num, pass);
-  
-  if(b)
-  {
-	  response.sendRedirect("../index.jsp?main=member/updateform.jsp?num="+num);
-  }else{%>
-	  <script type="text/javascript">
-	    alert("비밀번호가 틀렸어요");
-	    history.back();
-	  </script>
-  <%}
+  request.setCharacterEncoding("utf-8");
+  String email=request.getParameter("email1")+"@"+request.getParameter("email2");
+%>
+<jsp:useBean id="dao" class="data.dao.MemberDao"/>
+<jsp:useBean id="dto" class="data.dto.MemberDto"/>
+<jsp:setProperty property="*" name="dto"/>
+<%
+	dto.setEmail(email);
+    dao.updateMember(dto);
+    
+    //마이페이지
+    response.sendRedirect("../index.jsp?main=member/mypage.jsp");
 %>
 </body>
 </html>
