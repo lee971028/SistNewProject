@@ -23,6 +23,11 @@
   
   if(b){
 	  dao.deleteMember(num);
+	  
+	  //세션삭제
+	  session.removeAttribute("loginok");
+	  session.removeAttribute("myid");
+	  session.removeAttribute("saveok");
 	  %>
 	  <script type="text/javascript">
 	   alert("회원탈퇴성공!!!");

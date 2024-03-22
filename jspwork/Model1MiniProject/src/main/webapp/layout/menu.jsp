@@ -47,7 +47,7 @@
 						<li class="current-menu-item"><a href="<%=root%>/">Home</a></li>
 						<li class="parent"><a href="#">게시판</a>
 							<ul class="sub-menu">
-								<li><a href="#"><i class="icon-wrench"></i> 고객게시판</a></li>
+								<li><a href="#"><i class="icon-wrench"></i> 회원게시판</a></li>
 								<li><a href="#"><i class="icon-credit-card"></i> 이미지게시판</a></li>
 								<li><a href="#"><i class="icon-gift"></i> 스마트게시판</a></li>
 
@@ -72,7 +72,7 @@
 							</ul></li>
 						<li class="parent"><a href="#">방명록</a>
 							<ul class="sub-menu">
-								<li><a href="#">회원방명록</a></li>
+								<li><a href="index.jsp?main=memberguest/guestlist.jsp">회원방명록</a></li>
 								<li><a href="#">Medium Image</a></li>
 
 							</ul></li>
