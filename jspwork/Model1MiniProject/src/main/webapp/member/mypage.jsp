@@ -50,13 +50,18 @@
   MemberDao dao=new MemberDao();
   List<MemberDto> list=dao.getAllMembers();
   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+  
+  String loginok=(String)session.getAttribute("loginok");
+  String myid=(String)session.getAttribute("myid");
 %>
 <body>
     <div  style="margin: 200px 100px; width: 800px;">
        <table class="table table-bordered">
          <%
            for(MemberDto dto:list)
-           {%>
+           {
+             if(loginok!=null && myid.equals(dto.getId())){
+           %>
         	   <tr>
         	     <td rowspan="6" align="center" valign="middle" style="width: 200px;">
         	        <img src="image/shopimg.png" id="mainimg">
@@ -84,6 +89,8 @@
         	   </tr>
            <%}
          %>
+         
+        <%  }%>
        </table>
     </div>
     

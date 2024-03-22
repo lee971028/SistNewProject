@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +17,31 @@
 <body>
    <a href="<%=root%>" style="color: black; text-decoration: none;">
    <img alt="" src="<%=root%>/image/title.png">
-   		JSP & JQuery 미니프로젝트
+   		
    </a>
+   
+   <div style="float: right; padding-right: 50px;">
+     <%
+       //로그인 세션얻기
+       String loginok=(String)session.getAttribute("loginok");
+       //아이디 얻기
+       String myid=(String)session.getAttribute("myid");
+       
+       MemberDao dao=new MemberDao();
+       String name=dao.getName(myid);
+       
+       if(loginok==null){%>
+    	   <button type="button" class="btn btn-success"
+    	   style="width: 100px;"
+    	   onclick="location.href='index.jsp?main=login/loginform.jsp'">Login</button>
+       <%}else{%>
+    	   
+    	   <b><%=name %>님 로그인중..</b>
+    	   <button type="button" class="btn btn-danger"
+    	   style="width: 100px;"
+    	   onclick="location.href='login/logoutaction.jsp'">Logout</button>
+       <%}
+     %>
+   </div>
 </body>
 </html>

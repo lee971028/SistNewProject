@@ -15,10 +15,10 @@
   String num=request.getParameter("num");
   String pass=request.getParameter("pass");
   
-  //dao
+//dao 선언
   MemberDao dao=new MemberDao();
   
-  //비번체크해서 맞으면 삭제
+//비번체크후 맞을경우 삭제, 틀릴경우 경고후 이전페이지로 가기
   boolean b=dao.isEqualPass(num, pass);
   
   if(b){
