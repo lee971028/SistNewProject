@@ -139,7 +139,7 @@
   </div>
   
   
-  <div style="width: 580px; text-align: center;">
+  <div style="width: 580px; text-align: center; margin: 50px 100px;">
   
   <!-- 페이지 번호 출력 -->
   <ul class="pagination justify-content-center">
