@@ -21,7 +21,35 @@
      font-size: 10pt;
      color: gray;
   }
+  i.mod,i.del{
+     cursor: pointer;
+  }
 </style>
+
+<script type="text/javascript">
+   $(function(){
+	   
+	   $("span.likes").click(function(){
+		   
+		   var num=$(this).attr("num");
+		   //alert(num);
+		   var tag=$(this);
+		   
+		   $.ajax({
+			   type:"get",
+			   dataType:"json",
+			   url:"memberguest/updateincrechu.jsp",
+			   data:{"num":num},
+			   success:function(data){
+				   
+				  // alert(data.chu);
+				  tag.next().text(data.chu);
+			   }
+		   })
+	   });
+   });
+
+</script>
 </head>
 <body>
 <%
@@ -74,6 +102,15 @@
 	List<GuestDto>list=dao.getList(startNum, perPage);
 	
 	
+	/*마지막 페이지의 단 한개 남은 글을 삭제시 빈페이지가 남는다 그러므로 해결책은 그이전페이지로 가면 된다  */
+	if(list.size()==0 && currentPage!=1)
+	{%>
+		<script type="text/javascript">
+		location.href="index.jsp?main=memberguest/guestlist.jsp?currentPge=<%=currentPage-1%>";
+		</script>
+	<%}
+	
+	
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 %>
@@ -108,8 +145,10 @@
     	      if(loginok!=null && dto.getMyid().equals(myid)){
     	    	  %>
     	    	 <span style="margin-left: 280px;">
-    	    	  <i class="bi bi-pencil-square"></i>
-    	    	  <i class="bi bi-trash"></i></span> 
+    	    	  <i class="bi bi-pencil-square mod" 
+    	    	  onclick="location.href='index.jsp?main=memberguest/updateform.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i>
+    	    	  <i class="bi bi-trash del"
+    	    	  onclick="location.href='memberguest/delete.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i></span> 
     	      <%}
     	    %>
     	    
@@ -133,15 +172,23 @@
     	       <%=dto.getContent().replace("\n", "<br>")%>
     	    </td>
     	  </tr>
+    	  
+    	  <!-- 댓글&추천 -->
+    	  <tr>
+    	    <td>
+    	      <span class="answer" style="cursor: pointer;">댓글 0</span>
+    	      <span class="likes" style="margin-left: 20px; cursor: pointer;" num=<%=dto.getNum() %>>추천</span>
+    	      <span class="chu"><%=dto.getChu() %></span>
+    	    </td>
+    	  </tr>
     	</table>
     <%}
   %>
   </div>
   
-  
+  <!-- 페이지 번호 출력 -->
   <div style="width: 580px; text-align: center; margin: 50px 100px;">
   
-  <!-- 페이지 번호 출력 -->
   <ul class="pagination justify-content-center">
   <%
   //이전
