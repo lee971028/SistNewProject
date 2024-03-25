@@ -44,9 +44,35 @@
 				   
 				  // alert(data.chu);
 				  tag.next().text(data.chu);
+				  
+				  //하트에 animate
+				  tag.next().next().animate({"font-size":"15px"},1000,function(){
+					  //애니메이션 끝난후
+					  $(this).css("font-size","0px");
+				  })
 			   }
 		   })
 	   });
+	   
+	   
+	   
+	   //삭제
+	   $("i.del").click(function(){
+		   var num=$(this).attr("num");
+		   var currentPage=$(this).attr("currentPage");
+		   
+		   //alert(num+","+currentPage);
+		   
+		   var yes=confirm("정말 삭제하시겠어요?");
+		   
+		   if(yes){
+			   location.href='memberguest/delete.jsp?num='+num+'&currentPage='+currentPage;
+		   }
+		   
+	   })
+	   
+	   
+	   
    });
 
 </script>
@@ -148,7 +174,7 @@
     	    	  <i class="bi bi-pencil-square mod" 
     	    	  onclick="location.href='index.jsp?main=memberguest/updateform.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i>
     	    	  <i class="bi bi-trash del"
-    	    	  onclick="location.href='memberguest/delete.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i></span> 
+    	    	  num=<%=dto.getNum() %>  currentPage=<%=currentPage %>></i></span> 
     	      <%}
     	    %>
     	    
@@ -179,6 +205,7 @@
     	      <span class="answer" style="cursor: pointer;">댓글 0</span>
     	      <span class="likes" style="margin-left: 20px; cursor: pointer;" num=<%=dto.getNum() %>>추천</span>
     	      <span class="chu"><%=dto.getChu() %></span>
+    	      <i class="bi bi-heart-fill" style="font-size: 0px; color: red;"></i>
     	    </td>
     	  </tr>
     	</table>
