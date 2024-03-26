@@ -14,6 +14,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -81,7 +82,37 @@
 	   $("span.answer").click(function(){
 		   //$("div.answer").toggle();
 		   $(this).parent().find("div.answer").toggle();
-	   })
+	   });
+	   
+	   
+	   //댓글삭제
+	   $("i.adel").click(function(){
+		   
+		  
+		   var a=confirm("삭제하려면 [확인]을 눌러주세요");
+		   
+		   if(a){
+			   
+			   var idx=$(this).attr("idx");
+			   //alert(idx);
+			   
+			   $.ajax({
+				   type:"get",
+				   dataType:"html",
+				   url:"memberguest/deleteanswer.jsp",
+				   data:{"idx":idx},
+				   success:function(){
+					   location.reload();//새로고침
+				   }
+			   })
+			   
+		   }
+		   
+		   
+	   });
+	   
+	   
+	   
    });
 
 </script>
@@ -291,7 +322,7 @@
     	                	      <%
     	                	        if(loginok!=null && adto.getMyid().equals(myid)){%>
     	                	        	
-    	                	        	<i class="bi bi-pencil-square"></i>
+    	                	        	<i class="aedit bi bi-pencil-square" idx="<%=adto.getIdx()%>"  data-bs-toggle="modal" data-bs-target="#myModal"></i>
     	                	      		<i class="bi bi-trash adel" idx="<%=adto.getIdx()%>"></i>
     	                	        <%}
     	                	      %>
@@ -354,5 +385,41 @@
  
   
 </div>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">댓글수정</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <div class="updateform">
+            <input type="text" id="idx">
+            <input type="text" id="ucontent">
+            <button type="button" class="btn btn-info" id="btnupdate">댓글수정</button>
+         </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 </body>
 </html>
