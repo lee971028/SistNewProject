@@ -111,7 +111,47 @@
 		   
 	   });
 	   
+	   //수정아이콘 누르면 모달창
+	   $("i.aedit").click(function(){
+		   
+		   var idx=$(this).attr("idx");
+		   //alert(idx);
+		   
+		   $("#idx").val(idx);
+		   
+		   $.ajax({
+			   
+			   type:"get",
+			   dataType:"json",
+			   url:"memberguest/answercontent.jsp",
+			   data:{"idx":idx},
+			   success:function(res){
+				   
+				   $("#idx").val(res.idx);
+				   $("#ucontent").val(res.story);
+			   }
+		   })
+	   });
 	   
+	   
+	   //댓글수정하기
+	   $("#btnupdate").click(function(){
+		   
+		  var idx= $("#idx").val();
+		  var content=$("#ucontent").val();
+		  
+		  //alert(idx+","+content);
+		  
+		  $.ajax({
+			  type:"post",
+			  url:"memberguest/updateanswer.jsp",
+			  dataType:"html",
+			  data:{"idx":idx,"content":content},
+			  success:function(){
+				  location.reload();
+			  }
+		  })
+	   });
 	   
    });
 
@@ -400,10 +440,11 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-         <div class="updateform">
-            <input type="text" id="idx">
-            <input type="text" id="ucontent">
-            <button type="button" class="btn btn-info" id="btnupdate">댓글수정</button>
+         <div class="updateform d-inline-flex">
+            <input type="hidden" id="idx">
+            <input type="text" id="ucontent" class="form-control" style="width: 350px;">
+            <button type="button" class="btn btn-info" id="btnupdate"
+            style="margin-left: 10px;">댓글수정</button>
          </div>
       </div>
 
