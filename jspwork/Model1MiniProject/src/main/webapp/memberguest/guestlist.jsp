@@ -1,3 +1,5 @@
+<%@page import="data.dto.AnswerGuestDto"%>
+<%@page import="data.dao.AnswerGuestDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GuestDto"%>
@@ -73,6 +75,13 @@
 	   
 	   
 	   
+	   //댓글부분은 무조건 처음에는 안보이게 처리
+	   $("div.answer").hide();
+	   //댓글 클릭시 댓글부분이 보였다 안보였다 하기
+	   $("span.answer").click(function(){
+		   //$("div.answer").toggle();
+		   $(this).parent().find("div.answer").toggle();
+	   })
    });
 
 </script>
@@ -202,10 +211,101 @@
     	  <!-- 댓글&추천 -->
     	  <tr>
     	    <td>
-    	      <span class="answer" style="cursor: pointer;">댓글 0</span>
+    	    
+    	    <%
+    	       //각방명록에 달린 댓글 목록가져오기
+    	       AnswerGuestDao adao=new AnswerGuestDao();
+    	       List<AnswerGuestDto> alist=adao.getAllAnswers(dto.getNum());
+    	    %>
+    	    
+    	    
+    	    
+    	    
+    	      <span class="answer" style="cursor: pointer;">댓글 <%=alist.size() %></span>
     	      <span class="likes" style="margin-left: 20px; cursor: pointer;" num=<%=dto.getNum() %>>추천</span>
     	      <span class="chu"><%=dto.getChu() %></span>
     	      <i class="bi bi-heart-fill" style="font-size: 0px; color: red;"></i>
+    	      
+    	      
+    	      <div  class="answer">
+    	         <%
+    	           if(loginok!=null){%>
+    	        	   
+    	        	   <div class="answerform">
+    	        	      <form action="memberguest/answerinsert.jsp" method="post">
+    	        	        <input type="hidden" name="num" value="<%=dto.getNum()%>">
+    	        	        <input type="hidden" name="myid" value="<%=myid%>">
+    	        	        <input type="hidden" name="currentPage" value="<%=currentPage%>">
+    	        	        <table>
+    	        	           <tr>
+    	        	             <td width="500">
+    	        	               <textarea style="width: 480px; height: 70px;"
+    	        	               name="content" required="required"
+    	        	               class="form-control"></textarea>
+    	        	             </td>
+    	        	             <td>
+    	        	               <button type="submit" class="btn btn-info"
+    	        	               style="width: 70px; height: 70px;">등록</button>
+    	        	             </td>
+    	        	           </tr>
+    	        	        </table>
+    	        	      </form>
+    	        	   </div>
+    	          <% }
+    	         %>
+    	         
+    	         <div class="answerlist">
+    	             <table style="width: 500px;" >
+    	               <%
+    	                 for(AnswerGuestDto adto:alist)
+    	                 {%>
+    	                	 <tr>
+    	                	   <td>
+    	                	     <i class="bi bi-person-circle fs-2" style="color: gray;"></i>
+    	                	   </td>
+    	                	   <td>
+    	                	   
+    	                	   
+    	                	      <%
+    	                	        //작성자명
+    	                	        String aname=mdao.getName(adto.getMyid());
+    	                	      %>
+    	                	      <br>
+    	                	      <b><%=aname %></b>
+    	                	      &nbsp;
+    	                	      
+    	                	      <%
+    	                	        //글작성자와 댓글작성자가 같을경우
+    	                	        if(dto.getMyid().equals(adto.getMyid())){%>
+    	                	        	
+    	                	        	<span style="color: red;">작성자</span>
+    	                	        <%}
+    	                	      %>
+    	                	      
+    	                	      <span style="font-size: 9pt; color: gray; margin-left: 20px;">
+    	                	         <%=sdf.format(adto.getWriteday()) %>
+    	                	      </span>
+    	                	      
+    	                	      
+    	                	      <!-- 댓글 수정삭제는 본인만 보이게 -->
+    	                	      <%
+    	                	        if(loginok!=null && adto.getMyid().equals(myid)){%>
+    	                	        	
+    	                	        	<i class="bi bi-pencil-square"></i>
+    	                	      		<i class="bi bi-trash adel" idx="<%=adto.getIdx()%>"></i>
+    	                	        <%}
+    	                	      %>
+    	                	      
+    	                	      <br>
+    	                	      <span style="font-family: 10pt;"><%=adto.getContent().replace("\n", "<br>") %></span>
+    	                	      
+    	                	   </td>
+    	                	 </tr>
+    	                 <%}
+    	               %>
+    	             </table>
+    	         </div>
+    	      </div>
     	    </td>
     	  </tr>
     	</table>
