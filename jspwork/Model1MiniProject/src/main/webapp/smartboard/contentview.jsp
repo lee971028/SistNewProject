@@ -10,21 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-  request.setCharacterEncoding("utf-8");
-%>
 
-<jsp:useBean id="dao" class="data.dao.SmartDao"/>
-<jsp:useBean id="dto" class="data.dto.SmartDto"/>
-<jsp:setProperty property="*" name="dto"/>
-
-<%
-  dao.insertSmart(dto);
-  //일단은 목록..나중에 디테일페이지로 바꿀예정
-  //response.sendRedirect("../index.jsp?main=smartboard/boardlist.jsp");
-  
-  int num=dao.getMaxNum();
-  response.sendRedirect("../index.jsp?main=smartboard/contentview.jsp?num="+num+"&currentPage="+1);
-%>
 </body>
 </html>
